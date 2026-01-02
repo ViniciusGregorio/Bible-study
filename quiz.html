@@ -2,118 +2,77 @@
 <html lang="pt-BR">
 <head>
 <meta charset="UTF-8">
-<title>Quiz Bíblico – 70 Perguntas</title>
+<title>Quiz Bíblico</title>
 
 <style>
 body {
-    font-family: 'Segoe UI', sans-serif;
-    background: linear-gradient(135deg, #283c86, #45a247);
-    margin: 0;
+    font-family: Arial, Helvetica, sans-serif;
+    background: #f2f2f2;
     padding: 20px;
 }
 
 .container {
-    max-width: 900px;
-    background: #fff;
+    max-width: 700px;
+    background: #ffffff;
     margin: auto;
     padding: 30px;
-    border-radius: 20px;
-    box-shadow: 0 20px 40px rgba(0,0,0,.3);
+    border-radius: 10px;
 }
 
-h1, h2 {
+h1 {
     text-align: center;
-    color: #2c3e50;
-}
-
-.topics li {
-    margin: 8px 0;
-    font-weight: bold;
-}
-
-.timer {
-    text-align: center;
-    font-size: 20px;
-    color: #c0392b;
-    font-weight: bold;
-    margin: 15px 0;
 }
 
 .question {
     font-size: 20px;
-    font-weight: bold;
     margin-bottom: 15px;
 }
 
 .options label {
     display: block;
-    margin: 10px 0;
+    margin: 8px 0;
     cursor: pointer;
 }
 
 .explanation {
     margin-top: 15px;
-    background: #f4f6f8;
-    border-left: 5px solid #e67e22;
-    padding: 12px;
+    padding: 10px;
+    background: #f9f9f9;
+    border-left: 4px solid #999;
     display: none;
     font-style: italic;
 }
 
 button {
-    padding: 12px 25px;
+    margin-top: 20px;
+    padding: 10px 20px;
     font-size: 16px;
-    background: #27ae60;
-    color: #fff;
-    border: none;
-    border-radius: 10px;
     cursor: pointer;
-    display: block;
-    margin: 25px auto;
 }
 
 .result {
-    text-align: center;
     font-size: 22px;
-    font-weight: bold;
+    text-align: center;
 }
 </style>
 </head>
 
 <body>
 
-<div class="container" id="inicio">
+<div class="container">
 <h1>📖 Quiz Bíblico</h1>
-<h2>📚 Tópicos</h2>
-<ul class="topics">
-<li>Criação e Patriarcas</li>
-<li>Êxodo e Lei</li>
-<li>Juízes e Reis</li>
-<li>Profetas</li>
-<li>Período Intertestamentário</li>
-<li>Vida de Jesus</li>
-<li>Evangelhos</li>
-<li>Igreja Primitiva</li>
-<li>Cartas</li>
-<li>Apocalipse</li>
-</ul>
-<button onclick="iniciarQuiz()">Começar Quiz</button>
+
+<div id="quiz">
+    <div class="question" id="question"></div>
+    <div class="options" id="options"></div>
+    <div class="explanation" id="explanation"></div>
+    <button onclick="proxima()">Próxima pergunta</button>
 </div>
 
-<div class="container" id="quiz" style="display:none;">
-<div class="timer" id="timer">⏱️ 20s</div>
-<div class="question" id="question"></div>
-<div class="options" id="options"></div>
-<div class="explanation" id="explanation"></div>
-</div>
-
-<div class="container" id="fim" style="display:none;">
-<h1>✨ Resultado Final</h1>
-<div class="result" id="resultado"></div>
+<div id="final" style="display:none;" class="result"></div>
 </div>
 
 <script>
-const perguntas = [
 
 /* 🟢 FÁCIL – ANTIGO TESTAMENTO */
 { q:"Quem criou o mundo?", o:["Moisés","Deus","Adão","Noé"], a:1, e:"📖 Gênesis 1:1 — Deus criou os céus e a terra."},
@@ -163,73 +122,63 @@ const perguntas = [
 { q:"Qual é o último inimigo a ser destruído?", o:["Satanás","Pecado","Morte","Inferno"], a:2, e:"📖 1 Coríntios 15:26."},
 { q:"Quantos livros tem a Bíblia?", o:["39","66","27","73"], a:1, e:"📖 39 AT + 27 NT = 66 livros."}
 ];
-
-// 👉 Para economizar espaço aqui:
-// eu já deixei a estrutura pronta.
-// Basta continuar adicionando perguntas até chegar a 70
-// seguindo o mesmo modelo acima.
-
 let atual = 0;
 let pontos = 0;
-let tempo = 20;
-let intervalo;
+let respondida = false;
 
-function iniciarQuiz() {
-    document.getElementById("inicio").style.display="none";
-    document.getElementById("quiz").style.display="block";
-    carregarPergunta();
-}
-
-function carregarPergunta() {
-    if (atual >= perguntas.length) {
-        finalizar();
-        return;
-    }
-
-    tempo = 20;
-    document.getElementById("explanation").style.display="none";
-
+function carregar() {
+    const p = perguntas[atual];
     document.getElementById("question").innerText =
-        (atual+1) + ") " + perguntas[atual].q;
+        (atual + 1) + ") " + p.q;
 
-    const optionsDiv = document.getElementById("options");
-    optionsDiv.innerHTML = "";
+    const options = document.getElementById("options");
+    options.innerHTML = "";
+    document.getElementById("explanation").style.display = "none";
+    respondida = false;
 
-    perguntas[atual].o.forEach((opt, i) => {
-        const lbl = document.createElement("label");
-        lbl.innerHTML = `<input type="radio" name="opt" onclick="responder(${i})"> ${opt}`;
-        optionsDiv.appendChild(lbl);
+    p.o.forEach((op, i) => {
+        const label = document.createElement("label");
+        label.innerHTML = `<input type="radio" name="opcao" onclick="responder(${i})"> ${op}`;
+        options.appendChild(label);
     });
-
-    intervalo = setInterval(() => {
-        tempo--;
-        document.getElementById("timer").innerText = "⏱️ " + tempo + "s";
-        if (tempo === 0) {
-            clearInterval(intervalo);
-            mostrarExplicacao();
-        }
-    },1000);
 }
 
 function responder(i) {
-    clearInterval(intervalo);
-    if (i === perguntas[atual].a) pontos++;
-    else mostrarExplicacao();
-    setTimeout(() => { atual++; carregarPergunta(); }, 1800);
+    if (respondida) return;
+    respondida = true;
+
+    const p = perguntas[atual];
+    if (i === p.a) {
+        pontos++;
+    } else {
+        const exp = document.getElementById("explanation");
+        exp.innerText = p.e;
+        exp.style.display = "block";
+    }
 }
 
-function mostrarExplicacao() {
-    const exp = document.getElementById("explanation");
-    exp.innerText = perguntas[atual].e;
-    exp.style.display = "block";
+function proxima() {
+    if (!respondida) {
+        alert("Escolha uma alternativa antes de prosseguir.");
+        return;
+    }
+
+    atual++;
+    if (atual < perguntas.length) {
+        carregar();
+    } else {
+        finalizar();
+    }
 }
 
 function finalizar() {
-    document.getElementById("quiz").style.display="none";
-    document.getElementById("fim").style.display="block";
-    document.getElementById("resultado").innerHTML =
-        `Você acertou <b>${pontos}</b> de ${perguntas.length} perguntas.<br>📖 Continue firme na Palavra!`;
+    document.getElementById("quiz").style.display = "none";
+    document.getElementById("final").style.display = "block";
+    document.getElementById("final").innerHTML =
+        `Você acertou <b>${pontos}</b> de ${perguntas.length} perguntas.<br>📖 Continue estudando a Palavra!`;
 }
+
+carregar();
 </script>
 
 </body>
