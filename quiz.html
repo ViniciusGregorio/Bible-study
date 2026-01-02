@@ -1,188 +1,189 @@
+
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
 <meta charset="UTF-8">
-<title>Quiz Bíblico - Provérbios e Mateus</title>
+<title>Quiz Bíblico Interativo</title>
+
 <style>
 body {
-    font-family: Arial, sans-serif;
-    background: #f4f4f4;
+    font-family: 'Segoe UI', sans-serif;
+    background: linear-gradient(135deg, #1e3c72, #2a5298);
     padding: 20px;
+    color: #333;
 }
-h1, h2 {
-    text-align: center;
-}
+
 .quiz-container {
+    max-width: 850px;
     background: #fff;
-    padding: 20px;
-    border-radius: 8px;
-    max-width: 900px;
+    padding: 30px;
+    border-radius: 18px;
+    box-shadow: 0 15px 30px rgba(0,0,0,0.3);
     margin: auto;
 }
-.question {
-    margin-bottom: 15px;
+
+h1 {
+    text-align: center;
+    color: #2c3e50;
 }
+
+.progress {
+    text-align: center;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.timer {
+    text-align: center;
+    font-size: 20px;
+    font-weight: bold;
+    color: #c0392b;
+    margin-bottom: 25px;
+}
+
+.question {
+    margin-bottom: 25px;
+    padding: 20px;
+    border-left: 6px solid #3498db;
+    background: #f4f6f8;
+    border-radius: 10px;
+}
+
 .question p {
     font-weight: bold;
+    margin-bottom: 10px;
 }
-button {
-    background: #2e7d32;
-    color: white;
-    border: none;
+
+input[type="radio"] {
+    margin-right: 8px;
+}
+
+.correct {
+    color: green;
+    font-weight: bold;
+}
+
+.wrong {
+    color: red;
+    font-weight: bold;
+}
+
+.explanation {
+    margin-top: 12px;
     padding: 12px;
-    font-size: 16px;
+    background: #eef2f3;
+    border-left: 4px solid #e67e22;
+    border-radius: 6px;
+    display: none;
+    font-style: italic;
+}
+
+button {
+    display: block;
+    margin: 30px auto;
+    padding: 14px 30px;
+    font-size: 17px;
+    background: #27ae60;
+    color: #fff;
+    border: none;
+    border-radius: 10px;
     cursor: pointer;
-    border-radius: 5px;
 }
+
 button:hover {
-    background: #1b5e20;
+    background: #1e8449;
 }
+
 .result {
-    font-size: 20px;
     text-align: center;
-    margin-top: 20px;
+    font-size: 22px;
+    margin-top: 25px;
+    font-weight: bold;
 }
 </style>
 </head>
+
 <body>
 
-<h1>📖 Quiz Bíblico</h1>
-<h2>Base: Provérbios e Mateus</h2>
-
 <div class="quiz-container">
-<form id="quizForm">
+<h1>📖 Quiz Bíblico Interativo</h1>
 
-<!-- PALAVRAS -->
-<h3>🗣 Palavras</h3>
+<div class="progress" id="progress">Pergunta 1 de 6</div>
+<div class="timer" id="timer">⏱️ Tempo: 20s</div>
 
+<form id="quiz">
+
+<!-- PERGUNTA 1 -->
 <div class="question">
-<p>1) Onde está escrito para guardarmos nosso coração?</p>
-<input type="radio" name="q1" value="0"> Provérbios 15:1<br>
-<input type="radio" name="q1" value="0"> Mateus 7:12<br>
-<input type="radio" name="q1" value="1"> Provérbios 4:23<br>
-<input type="radio" name="q1" value="0"> Salmos 23:1
+<p>1) Quanto tempo durou o período entre o Antigo e o Novo Testamento?</p>
+<input type="radio" name="q1" value="1"> Cerca de 400 anos<br>
+<input type="radio" name="q1" value="0"> 70 anos<br>
+<input type="radio" name="q1" value="0"> 1000 anos<br>
+
+<div class="explanation">
+📖 Esse período é chamado de <b>Intertestamentário</b> e durou aproximadamente 400 anos, quando não houve registros proféticos.
+</div>
 </div>
 
+<!-- PERGUNTA 2 -->
 <div class="question">
-<p>2) A morte e a vida estão no poder da língua. Onde está escrito?</p>
-<input type="radio" name="q2" value="1"> Provérbios 18:21<br>
-<input type="radio" name="q2" value="0"> Mateus 12:34<br>
-<input type="radio" name="q2" value="0"> Eclesiastes 3:1<br>
-<input type="radio" name="q2" value="0"> Salmos 119:105
+<p>2) Qual idioma se tornou predominante nesse período?</p>
+<input type="radio" name="q2" value="1"> Grego<br>
+<input type="radio" name="q2" value="0"> Hebraico<br>
+<input type="radio" name="q2" value="0"> Latim<br>
+<input type="radio" name="q2" value="0"> Aramaico<br>
+
+<div class="explanation">
+📖 O grego se espalhou após as conquistas de Alexandre, o Grande, sendo o idioma do Novo Testamento.
+</div>
 </div>
 
-<!-- FINANÇAS -->
-<h3>💰 Finanças</h3>
-
+<!-- PERGUNTA 3 -->
 <div class="question">
-<p>3) Onde está escrito que o amor ao dinheiro é raiz de todos os males?</p>
-<input type="radio" name="q3" value="0"> Provérbios 22:7<br>
-<input type="radio" name="q3" value="1"> 1 Timóteo 6:10<br>
-<input type="radio" name="q3" value="0"> Mateus 6:24<br>
-<input type="radio" name="q3" value="0"> Lucas 16:10
+<p>3) Quem libertou o povo de Israel do Egito?</p>
+<input type="radio" name="q3" value="1"> Moisés<br>
+<input type="radio" name="q3" value="0"> Abraão<br>
+<input type="radio" name="q3" value="0"> Davi<br>
+
+<div class="explanation">
+📖 Deus escolheu Moisés para libertar Israel da escravidão (Êxodo 3–14).
+</div>
 </div>
 
+<!-- PERGUNTA 4 -->
 <div class="question">
-<p>4) Onde Jesus ensina a juntar tesouros no céu?</p>
-<input type="radio" name="q4" value="1"> Mateus 6:19-20<br>
-<input type="radio" name="q4" value="0"> Provérbios 3:9<br>
-<input type="radio" name="q4" value="0"> Lucas 12:15<br>
-<input type="radio" name="q4" value="0"> Salmos 37:5
+<p>4) Quantos livros tem o Novo Testamento?</p>
+<input type="radio" name="q4" value="1"> 27<br>
+<input type="radio" name="q4" value="0"> 39<br>
+<input type="radio" name="q4" value="0"> 66<br>
+
+<div class="explanation">
+📖 O Novo Testamento possui 27 livros, incluindo Evangelhos, Cartas e Apocalipse.
+</div>
 </div>
 
-<!-- MENTIRA -->
-<h3>🚫 Mentira</h3>
-
+<!-- PERGUNTA 5 -->
 <div class="question">
-<p>5) O que Provérbios diz sobre o mentiroso?</p>
-<input type="radio" name="q5" value="0"> Será exaltado<br>
-<input type="radio" name="q5" value="1"> É abominação ao Senhor<br>
-<input type="radio" name="q5" value="0"> Será perdoado automaticamente<br>
-<input type="radio" name="q5" value="0"> Nada acontece
+<p>5) Quem matou Golias?</p>
+<input type="radio" name="q5" value="1"> Davi<br>
+<input type="radio" name="q5" value="0"> Saul<br>
+<input type="radio" name="q5" value="0"> Sansão<br>
+
+<div class="explanation">
+📖 Davi venceu Golias confiando no Senhor (1 Samuel 17).
+</div>
 </div>
 
-<!-- PROVISÃO -->
-<h3>🍞 Provisão</h3>
-
+<!-- PERGUNTA 6 -->
 <div class="question">
-<p>6) Onde Jesus ensina que Deus cuida das aves?</p>
-<input type="radio" name="q6" value="1"> Mateus 6:26<br>
-<input type="radio" name="q6" value="0"> Provérbios 10:22<br>
-<input type="radio" name="q6" value="0"> Salmos 121:1<br>
-<input type="radio" name="q6" value="0"> Lucas 10:2
+<p>6) Qual é o primeiro livro da Bíblia?</p>
+<input type="radio" name="q6" value="1"> Gênesis<br>
+<input type="radio" name="q6" value="0"> Êxodo<br>
+<input type="radio" name="q6" value="0"> Salmos<br>
+
+<div class="explanation">
+📖 Gênesis fala da criação, da queda e das promessas de Deus à humanidade.
 </div>
-
-<!-- AFIRMAÇÕES DE JESUS -->
-<h3>✝ Afirmações de Jesus</h3>
-
-<div class="question">
-<p>7) Onde está escrito que para ser discípulo é necessário “aborrecer” tudo o mais?</p>
-<input type="radio" name="q7" value="0"> Mateus 5:44<br>
-<input type="radio" name="q7" value="1"> Lucas 14:26<br>
-<input type="radio" name="q7" value="0"> João 3:16<br>
-<input type="radio" name="q7" value="0"> Mateus 16:24
-</div>
-
-<div class="question">
-<p>8) Onde Jesus afirma ser o pão da vida?</p>
-<input type="radio" name="q8" value="0"> Mateus 4:4<br>
-<input type="radio" name="q8" value="1"> João 6:35<br>
-<input type="radio" name="q8" value="0"> Lucas 22:19<br>
-<input type="radio" name="q8" value="0"> Mateus 26:26
-</div>
-
-<div class="question">
-<p>9) Qual foi a resposta de Jesus ao Diabo sobre adoração?</p>
-<input type="radio" name="q9" value="1"> “Ao Senhor teu Deus adorarás”<br>
-<input type="radio" name="q9" value="0"> “Sai de mim”<br>
-<input type="radio" name="q9" value="0"> “Meu reino não é deste mundo”<br>
-<input type="radio" name="q9" value="0"> “Nem só de pão viverá”
-</div>
-
-<div class="question">
-<p>10) Onde Jesus nasceu?</p>
-<input type="radio" name="q10" value="0"> Nazaré<br>
-<input type="radio" name="q10" value="0"> Jerusalém<br>
-<input type="radio" name="q10" value="1"> Belém<br>
-<input type="radio" name="q10" value="0"> Cafarnaum
-</div>
-
-<!-- PERÍODO DILUVIANO -->
-<h3>🌊 Período Diluviano</h3>
-
-<div class="question">
-<p>11) Quem foi o homem justo escolhido por Deus no dilúvio?</p>
-<input type="radio" name="q11" value="1"> Noé<br>
-<input type="radio" name="q11" value="0"> Abraão<br>
-<input type="radio" name="q11" value="0"> Moisés<br>
-<input type="radio" name="q11" value="0"> Enoque
-</div>
-
-<div class="question">
-<p>12) Quantos dias choveu durante o dilúvio?</p>
-<input type="radio" name="q12" value="0"> 30<br>
-<input type="radio" name="q12" value="1"> 40<br>
-<input type="radio" name="q12" value="0"> 7<br>
-<input type="radio" name="q12" value="0"> 120
-</div>
-
-<!-- INTERBÍBLICO -->
-<h3>📜 Período Interbíblico</h3>
-
-<div class="question">
-<p>13) Quanto tempo durou o período interbíblico?</p>
-<input type="radio" name="q13" value="0"> 200 anos<br>
-<input type="radio" name="q13" value="1"> Cerca de 400 anos<br>
-<input type="radio" name="q13" value="0"> 70 anos<br>
-<input type="radio" name="q13" value="0"> 1000 anos
-</div>
-
-<div class="question">
-<p>14) Qual idioma se tornou comum nesse período?</p>
-<input type="radio" name="q14" value="1"> Grego<br>
-<input type="radio" name="q14" value="0"> Hebraico<br>
-<input type="radio" name="q14" value="0"> Latim<br>
-<input type="radio" name="q14" value="0"> Aramaico
 </div>
 
 <button type="button" onclick="corrigir()">Finalizar Quiz</button>
@@ -193,19 +194,38 @@ button:hover {
 </div>
 
 <script>
+let tempo = 20;
+let perguntaAtual = 1;
+const totalPerguntas = 6;
+
+let timer = setInterval(() => {
+    tempo--;
+    document.getElementById("timer").innerText = "⏱️ Tempo: " + tempo + "s";
+
+    if (tempo === 0) {
+        corrigir();
+    }
+}, 1000);
+
 function corrigir() {
-    let total = 14;
+    clearInterval(timer);
+
     let pontos = 0;
 
-    for (let i = 1; i <= total; i++) {
+    for (let i = 1; i <= totalPerguntas; i++) {
         let resposta = document.querySelector('input[name="q' + i + '"]:checked');
-        if (resposta && resposta.value == "1") {
+        let explicacao = document.querySelector('input[name="q' + i + '"][value="1"]').closest('.question').querySelector('.explanation');
+
+        if (resposta && resposta.value === "1") {
             pontos++;
+        } else {
+            explicacao.style.display = "block";
         }
     }
 
     document.getElementById("resultado").innerHTML =
-        "✅ Você acertou <strong>" + pontos + "</strong> de " + total + " perguntas.";
+        "✨ Você acertou <b>" + pontos + "</b> de " + totalPerguntas +
+        " perguntas.<br>📖 Continue crescendo no conhecimento da Palavra!";
 }
 </script>
 
