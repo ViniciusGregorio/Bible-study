@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<title>Quiz Bíblico - Provérbios e Mateus</title>
+<style>
+body {
+    font-family: Arial, sans-serif;
+    background: #f4f4f4;
+    padding: 20px;
+}
+h1, h2 {
+    text-align: center;
+}
+.quiz-container {
+    background: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    max-width: 900px;
+    margin: auto;
+}
+.question {
+    margin-bottom: 15px;
+}
+.question p {
+    font-weight: bold;
+}
+button {
+    background: #2e7d32;
+    color: white;
+    border: none;
+    padding: 12px;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+button:hover {
+    background: #1b5e20;
+}
+.result {
+    font-size: 20px;
+    text-align: center;
+    margin-top: 20px;
+}
+</style>
+</head>
+<body>
+
+<h1>📖 Quiz Bíblico</h1>
+<h2>Base: Provérbios e Mateus</h2>
+
+<div class="quiz-container">
+<form id="quizForm">
+
+<!-- PALAVRAS -->
+<h3>🗣 Palavras</h3>
+
+<div class="question">
+<p>1) Onde está escrito para guardarmos nosso coração?</p>
+<input type="radio" name="q1" value="0"> Provérbios 15:1<br>
+<input type="radio" name="q1" value="0"> Mateus 7:12<br>
+<input type="radio" name="q1" value="1"> Provérbios 4:23<br>
+<input type="radio" name="q1" value="0"> Salmos 23:1
+</div>
+
+<div class="question">
+<p>2) A morte e a vida estão no poder da língua. Onde está escrito?</p>
+<input type="radio" name="q2" value="1"> Provérbios 18:21<br>
+<input type="radio" name="q2" value="0"> Mateus 12:34<br>
+<input type="radio" name="q2" value="0"> Eclesiastes 3:1<br>
+<input type="radio" name="q2" value="0"> Salmos 119:105
+</div>
+
+<!-- FINANÇAS -->
+<h3>💰 Finanças</h3>
+
+<div class="question">
+<p>3) Onde está escrito que o amor ao dinheiro é raiz de todos os males?</p>
+<input type="radio" name="q3" value="0"> Provérbios 22:7<br>
+<input type="radio" name="q3" value="1"> 1 Timóteo 6:10<br>
+<input type="radio" name="q3" value="0"> Mateus 6:24<br>
+<input type="radio" name="q3" value="0"> Lucas 16:10
+</div>
+
+<div class="question">
+<p>4) Onde Jesus ensina a juntar tesouros no céu?</p>
+<input type="radio" name="q4" value="1"> Mateus 6:19-20<br>
+<input type="radio" name="q4" value="0"> Provérbios 3:9<br>
+<input type="radio" name="q4" value="0"> Lucas 12:15<br>
+<input type="radio" name="q4" value="0"> Salmos 37:5
+</div>
+
+<!-- MENTIRA -->
+<h3>🚫 Mentira</h3>
+
+<div class="question">
+<p>5) O que Provérbios diz sobre o mentiroso?</p>
+<input type="radio" name="q5" value="0"> Será exaltado<br>
+<input type="radio" name="q5" value="1"> É abominação ao Senhor<br>
+<input type="radio" name="q5" value="0"> Será perdoado automaticamente<br>
+<input type="radio" name="q5" value="0"> Nada acontece
+</div>
+
+<!-- PROVISÃO -->
+<h3>🍞 Provisão</h3>
+
+<div class="question">
+<p>6) Onde Jesus ensina que Deus cuida das aves?</p>
+<input type="radio" name="q6" value="1"> Mateus 6:26<br>
+<input type="radio" name="q6" value="0"> Provérbios 10:22<br>
+<input type="radio" name="q6" value="0"> Salmos 121:1<br>
+<input type="radio" name="q6" value="0"> Lucas 10:2
+</div>
+
+<!-- AFIRMAÇÕES DE JESUS -->
+<h3>✝ Afirmações de Jesus</h3>
+
+<div class="question">
+<p>7) Onde está escrito que para ser discípulo é necessário “aborrecer” tudo o mais?</p>
+<input type="radio" name="q7" value="0"> Mateus 5:44<br>
+<input type="radio" name="q7" value="1"> Lucas 14:26<br>
+<input type="radio" name="q7" value="0"> João 3:16<br>
+<input type="radio" name="q7" value="0"> Mateus 16:24
+</div>
+
+<div class="question">
+<p>8) Onde Jesus afirma ser o pão da vida?</p>
+<input type="radio" name="q8" value="0"> Mateus 4:4<br>
+<input type="radio" name="q8" value="1"> João 6:35<br>
+<input type="radio" name="q8" value="0"> Lucas 22:19<br>
+<input type="radio" name="q8" value="0"> Mateus 26:26
+</div>
+
+<div class="question">
+<p>9) Qual foi a resposta de Jesus ao Diabo sobre adoração?</p>
+<input type="radio" name="q9" value="1"> “Ao Senhor teu Deus adorarás”<br>
+<input type="radio" name="q9" value="0"> “Sai de mim”<br>
+<input type="radio" name="q9" value="0"> “Meu reino não é deste mundo”<br>
+<input type="radio" name="q9" value="0"> “Nem só de pão viverá”
+</div>
+
+<div class="question">
+<p>10) Onde Jesus nasceu?</p>
+<input type="radio" name="q10" value="0"> Nazaré<br>
+<input type="radio" name="q10" value="0"> Jerusalém<br>
+<input type="radio" name="q10" value="1"> Belém<br>
+<input type="radio" name="q10" value="0"> Cafarnaum
+</div>
+
+<!-- PERÍODO DILUVIANO -->
+<h3>🌊 Período Diluviano</h3>
+
+<div class="question">
+<p>11) Quem foi o homem justo escolhido por Deus no dilúvio?</p>
+<input type="radio" name="q11" value="1"> Noé<br>
+<input type="radio" name="q11" value="0"> Abraão<br>
+<input type="radio" name="q11" value="0"> Moisés<br>
+<input type="radio" name="q11" value="0"> Enoque
+</div>
+
+<div class="question">
+<p>12) Quantos dias choveu durante o dilúvio?</p>
+<input type="radio" name="q12" value="0"> 30<br>
+<input type="radio" name="q12" value="1"> 40<br>
+<input type="radio" name="q12" value="0"> 7<br>
+<input type="radio" name="q12" value="0"> 120
+</div>
+
+<!-- INTERBÍBLICO -->
+<h3>📜 Período Interbíblico</h3>
+
+<div class="question">
+<p>13) Quanto tempo durou o período interbíblico?</p>
+<input type="radio" name="q13" value="0"> 200 anos<br>
+<input type="radio" name="q13" value="1"> Cerca de 400 anos<br>
+<input type="radio" name="q13" value="0"> 70 anos<br>
+<input type="radio" name="q13" value="0"> 1000 anos
+</div>
+
+<div class="question">
+<p>14) Qual idioma se tornou comum nesse período?</p>
+<input type="radio" name="q14" value="1"> Grego<br>
+<input type="radio" name="q14" value="0"> Hebraico<br>
+<input type="radio" name="q14" value="0"> Latim<br>
+<input type="radio" name="q14" value="0"> Aramaico
+</div>
+
+<button type="button" onclick="corrigir()">Finalizar Quiz</button>
+
+<div class="result" id="resultado"></div>
+
+</form>
+</div>
+
+<script>
+function corrigir() {
+    let total = 14;
+    let pontos = 0;
+
+    for (let i = 1; i <= total; i++) {
+        let resposta = document.querySelector('input[name="q' + i + '"]:checked');
+        if (resposta && resposta.value == "1") {
+            pontos++;
+        }
+    }
+
+    document.getElementById("resultado").innerHTML =
+        "✅ Você acertou <strong>" + pontos + "</strong> de " + total + " perguntas.";
+}
+</script>
+
+</body>
+</html>
