@@ -1,233 +1,303 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8">
-  <title>Estudo Bíblico — Relacionamentos, Corte e Casamento</title>
-  <style>
-    body {
-      font-family: Arial, Helvetica, sans-serif;
-      background: #f4f6f8;
-      color: #222;
-      line-height: 1.6;
-      margin: 0;
-      padding: 0;
-    }
-    header {
-      background: #2c3e50;
-      color: #fff;
-      padding: 30px;
-      text-align: center;
-    }
-    section {
-      background: #fff;
-      margin: 20px auto;
-      padding: 25px;
-      max-width: 900px;
-      border-radius: 8px;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
-    }
-    h2 {
-      color: #2c3e50;
-      border-bottom: 2px solid #ddd;
-      padding-bottom: 5px;
-    }
-    h3 {
-      color: #34495e;
-    }
-    .verse {
-      background: #eef2f5;
-      border-left: 4px solid #2c3e50;
-      padding: 10px;
-      margin: 10px 0;
-      font-style: italic;
-    }
-    .box {
-      background: #fafafa;
-      border: 1px solid #ddd;
-      padding: 15px;
-      border-radius: 6px;
-      margin: 15px 0;
-    }
-    .cause {
-      color: #b03a2e;
-      font-weight: bold;
-    }
-    .effect {
-      color: #1d8348;
-      font-weight: bold;
-    }
-    footer {
-      text-align: center;
-      padding: 20px;
-      color: #666;
-    }
-    button {
-      background: #2c3e50;
-      color: #fff;
-      border: none;
-      padding: 10px 15px;
-      border-radius: 5px;
-      cursor: pointer;
-    }
-    button:hover {
-      background: #1a252f;
-    }
-    .hidden {
-      display: none;
-    }
-  </style>
+<meta charset="UTF-8">
+<title>Curso Bíblico — Relacionamentos, Corte e Casamento</title>
+
+<style>
+:root {
+  --primary: #2c3e50;
+  --secondary: #34495e;
+  --accent: #8e44ad;
+  --light: #f4f6f8;
+  --card: #ffffff;
+}
+
+body {
+  margin: 0;
+  font-family: "Segoe UI", Arial, sans-serif;
+  background: var(--light);
+  color: #222;
+  line-height: 1.7;
+}
+
+header {
+  background: linear-gradient(135deg, var(--primary), var(--secondary));
+  color: #fff;
+  padding: 50px 20px;
+  text-align: center;
+}
+
+header h1 {
+  margin-bottom: 10px;
+  font-size: 2.4em;
+}
+
+header p {
+  font-size: 1.1em;
+  opacity: 0.95;
+}
+
+.module {
+  max-width: 1000px;
+  margin: 30px auto;
+  background: var(--card);
+  padding: 35px;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+}
+
+.module h2 {
+  color: var(--primary);
+  border-bottom: 3px solid var(--accent);
+  padding-bottom: 8px;
+}
+
+.module h3 {
+  color: var(--secondary);
+  margin-top: 25px;
+}
+
+.verse {
+  background: #eef2f7;
+  border-left: 5px solid var(--accent);
+  padding: 15px;
+  margin: 20px 0;
+  font-style: italic;
+}
+
+.story {
+  background: #faf7ff;
+  border: 1px solid #e0d7f5;
+  padding: 20px;
+  border-radius: 8px;
+  margin: 20px 0;
+}
+
+.testimony {
+  background: #fdfefe;
+  border: 1px dashed #bbb;
+  padding: 20px;
+  border-radius: 8px;
+  margin: 20px 0;
+}
+
+.cause-effect {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 15px;
+  margin: 20px 0;
+}
+
+.cause {
+  background: #fdecea;
+  padding: 15px;
+  border-radius: 8px;
+}
+
+.effect {
+  background: #eafaf1;
+  padding: 15px;
+  border-radius: 8px;
+}
+
+button {
+  background: var(--accent);
+  color: #fff;
+  border: none;
+  padding: 12px 18px;
+  border-radius: 6px;
+  cursor: pointer;
+  margin-top: 15px;
+}
+
+button:hover {
+  opacity: 0.9;
+}
+
+.hidden {
+  display: none;
+}
+
+footer {
+  text-align: center;
+  padding: 30px;
+  color: #666;
+}
+</style>
 </head>
+
 <body>
 
 <header>
-  <h1>Estudo Bíblico Completo</h1>
-  <p>Relacionamentos, Corte, Casamento e Princípios Eternos</p>
+  <h1>Curso Bíblico: Relacionamentos à Luz da Escritura</h1>
+  <p>Da cultura israelita ao discipulado cristão prático</p>
 </header>
 
-<section>
-  <h2>1. Fundamento Bíblico do Casamento</h2>
-  <div class="verse">
-    “Por isso deixa o homem pai e mãe, e se une à sua mulher,
-    tornando-se os dois uma só carne.” (Gênesis 2:24)
+<!-- MÓDULO 1 -->
+<section class="module">
+<h2>Módulo 1 — O Casamento no Projeto de Deus</h2>
+
+<div class="verse">
+“Não é bom que o homem esteja só.” (Gênesis 2:18)
+</div>
+
+<p>
+Antes de existir Israel, Lei ou cultura, Deus estabelece o casamento
+como <strong>aliança de propósito</strong>, não como experimento emocional.
+</p>
+
+<div class="story">
+<h3>Exemplo Bíblico: Adão e Eva</h3>
+<p>
+Não houve namoro, escolha familiar ou ritual social.
+Houve <strong>iniciativa divina</strong>, clareza de propósito e responsabilidade.
+</p>
+</div>
+
+<div class="cause-effect">
+  <div class="cause">
+    <strong>Causa:</strong> União baseada em propósito
   </div>
-  <p>
-    O casamento nasce <strong>antes da Lei, antes de Israel e antes da cultura</strong>.
-    Ele é criação divina, não invenção social. Jesus reafirma esse texto como
-    fundamento absoluto (Mateus 19:4–6).
-  </p>
+  <div class="effect">
+    <strong>Efeito:</strong> Identidade, segurança e missão compartilhada
+  </div>
+</div>
 </section>
 
-<section>
-  <h2>2. Como Funcionava no Antigo Israel</h2>
+<!-- MÓDULO 2 -->
+<section class="module">
+<h2>Módulo 2 — Corte e Casamento em Israel</h2>
 
-  <h3>2.1 Estrutura</h3>
-  <ul>
-    <li>Casamento = aliança familiar</li>
-    <li>Pais como responsáveis legais</li>
-    <li>Ênfase em fé, herança e proteção</li>
-  </ul>
+<div class="verse">
+“Chamemos a jovem e perguntemos a ela.” (Gênesis 24:57)
+</div>
 
-  <div class="verse">
-    “Casa e riquezas herdam-se dos pais, mas a mulher prudente vem do Senhor.”
-    (Provérbios 19:14)
+<div class="story">
+<h3>Exemplo: Isaque e Rebeca</h3>
+<p>
+Este texto revela três pilares:
+</p>
+<ul>
+  <li>Investigação espiritual</li>
+  <li>Consentimento pessoal</li>
+  <li>Aliança pública</li>
+</ul>
+</div>
+
+<div class="testimony">
+<h3>Depoimento Cultural (Contextual)</h3>
+<p>
+Em uma sociedade sem Estado, previdência ou justiça estruturada,
+o casamento arranjado <strong>protegia a mulher, os filhos e a fé</strong>.
+O pai não era um tirano — era um guardião legal.
+</p>
+</div>
+
+<div class="cause-effect">
+  <div class="cause">
+    <strong>Causa:</strong> Autoridade familiar responsável
   </div>
-
-  <h3>2.2 Processo</h3>
-  <ol>
-    <li>Investigação de caráter</li>
-    <li>Consentimento da noiva (Gn 24:57–58)</li>
-    <li>Noivado legal (kiddushin)</li>
-    <li>Casamento (nissuin)</li>
-  </ol>
-
-  <div class="box">
-    <strong>Importante:</strong> Não havia namoro romântico, mas havia
-    <u>conhecimento responsável e supervisionado</u>.
+  <div class="effect">
+    <strong>Efeito:</strong> Estabilidade social e continuidade espiritual
   </div>
+</div>
 </section>
 
-<section>
-  <h2>3. Causas e Efeitos do Modelo Antigo</h2>
+<!-- MÓDULO 3 -->
+<section class="module">
+<h2>Módulo 3 — Quando o Modelo é Ignorado</h2>
 
-  <p><span class="cause">Causa:</span> Autoridade familiar e aliança</p>
-  <p><span class="effect">Efeito:</span> Estabilidade, proteção e permanência</p>
+<div class="story">
+<h3>Sansão (Juízes 14)</h3>
+<p>
+Sansão escolhe movido por desejo imediato, ignorando conselho
+e propósito espiritual.
+</p>
+</div>
 
-  <p><span class="cause">Causa:</span> Fidelidade exigida antes do casamento</p>
-  <p><span class="effect">Efeito:</span> Redução de abandono e adultério</p>
+<div class="cause-effect">
+  <div class="cause">
+    <strong>Causa:</strong> Escolha sem discernimento
+  </div>
+  <div class="effect">
+    <strong>Efeito:</strong> Conflito, perda e cegueira espiritual
+  </div>
+</div>
 
-  <p><span class="cause">Causa:</span> Casamentos fora da fé</p>
-  <p><span class="effect">Efeito:</span> Apostasia e juízo (1 Reis 11; Esdras 9)</p>
+<div class="story">
+<h3>Salomão (1 Reis 11)</h3>
+<p>
+Casamentos sem critério espiritual levam à idolatria.
+</p>
+</div>
 </section>
 
-<section>
-  <h2>4. Jesus e a Transição do Modelo</h2>
+<!-- MÓDULO 4 -->
+<section class="module">
+<h2>Módulo 4 — Jesus e a Redefinição do Modelo</h2>
 
-  <div class="verse">
-    “Moisés permitiu por causa da dureza do vosso coração,
-    mas não foi assim desde o princípio.” (Mateus 19:8)
-  </div>
+<div class="verse">
+“Não foi assim desde o princípio.” (Mateus 19:8)
+</div>
 
-  <p>
-    Jesus não restaura o sistema patriarcal, mas o
-    <strong>propósito original</strong>.
-    Ele desloca a autoridade máxima da família para Deus
-    e a consciência diante dEle.
-  </p>
+<p>
+Jesus não restaura o patriarcado,
+mas o <strong>propósito original</strong>.
+</p>
 
-  <div class="box">
-    Jesus não manda pais escolherem cônjuges,
-    nem institui namoro — Ele eleva o padrão moral.
-  </div>
+<div class="testimony">
+<h3>Depoimento Teológico</h3>
+<p>
+Jesus desloca a autoridade máxima da tradição
+para a consciência diante de Deus.
+A pergunta deixa de ser:
+“Quem escolheu por mim?”
+e passa a ser:
+“Isso glorifica o Pai?”
+</p>
+</div>
 </section>
 
-<section>
-  <h2>5. Ensino do Novo Testamento</h2>
+<!-- MÓDULO 5 -->
+<section class="module">
+<h2>Módulo 5 — O Norte Bíblico para Hoje</h2>
 
-  <div class="verse">
-    “Tudo me é lícito, mas nem tudo convém.” (1 Coríntios 6:12)
-  </div>
+<div class="verse">
+“Casar-se no Senhor.” (1 Coríntios 7:39)
+</div>
 
-  <ul>
-    <li>Escolha pessoal com responsabilidade (1Co 7)</li>
-    <li>Casar “no Senhor” (1Co 7:39)</li>
-    <li>Autoridade dos pais limitada pelo amor (Ef 6:4)</li>
-  </ul>
-</section>
+<ul>
+<li>Liberdade com responsabilidade</li>
+<li>Conhecimento sem intimidade prematura</li>
+<li>Conselho sem controle</li>
+<li>Amor dentro da aliança</li>
+</ul>
 
-<section>
-  <h2>6. Conselhos Bíblicos Legítimos e Necessários</h2>
+<button onclick="toggleFinal()">Mostrar síntese pastoral</button>
 
-  <h3>6.1 O que é obrigatório (princípios eternos)</h3>
-  <ul>
-    <li>Santidade sexual (1Ts 4:3–5)</li>
-    <li>Intenção clara de aliança</li>
-    <li>Igualdade espiritual</li>
-    <li>Responsabilidade emocional</li>
-  </ul>
-
-  <h3>6.2 O que é sabedoria, não mandamento</h3>
-  <ul>
-    <li>Ouvir pais e líderes maduros</li>
-    <li>Tempo de observação</li>
-    <li>Limites claros</li>
-  </ul>
-</section>
-
-<section>
-  <h2>7. Um Norte Bíblico e Funcional (Aplicação)</h2>
-
-  <div class="box">
-    <strong>Modelo saudável hoje:</strong>
-    <ol>
-      <li>Conhecimento honesto e respeitoso</li>
-      <li>Limites físicos e emocionais</li>
-      <li>Conselho e prestação de contas</li>
-      <li>Decisão consciente diante de Deus</li>
-    </ol>
-  </div>
-
-  <button onclick="toggleExtra()">Mostrar síntese final</button>
-
-  <div id="extra" class="hidden">
-    <div class="verse">
-      “Tudo o que não procede de fé é pecado.” (Romanos 14:23)
-    </div>
+<div id="final" class="hidden">
+  <div class="testimony">
+    <h3>Síntese Pastoral</h3>
     <p>
-      O Novo Testamento não pergunta <em>“quem escolheu”</em>,
-      mas <strong>“isso glorifica a Deus?”</strong>
+    A Bíblia não oferece um método único,
+    mas um <strong>caminho de sabedoria</strong>.
+    Onde há temor de Deus, clareza de propósito
+    e amor sacrificial,
+    o relacionamento honra o Senhor.
     </p>
   </div>
+</div>
 </section>
 
 <footer>
-  <p>Estudo bíblico — fidelidade ao texto, sem anacronismo ou legalismo.</p>
+<p>Curso bíblico completo — fidelidade ao texto, profundidade e aplicação prática.</p>
 </footer>
 
 <script>
-  function toggleExtra() {
-    const el = document.getElementById("extra");
-    el.classList.toggle("hidden");
-  }
+function toggleFinal() {
+  document.getElementById("final").classList.toggle("hidden");
+}
 </script>
 
 </body>
