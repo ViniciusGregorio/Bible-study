@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Quiz Bíblico</title>
+<style>
+body {
+    font-family: Arial, sans-serif;
+    background: #f2f2f2;
+    padding: 20px;
+}
+.container {
+    max-width: 900px;
+    margin: auto;
+    background: #fff;
+    padding: 20px;
+    border-radius: 8px;
+}
+h1 {
+    text-align: center;
+}
+.question {
+    margin-bottom: 20px;
+}
+.question h3 {
+    font-size: 18px;
+}
+label {
+    display: block;
+    margin: 5px 0;
+}
+button {
+    width: 100%;
+    padding: 15px;
+    background: #2e7d32;
+    color: #fff;
+    border: none;
+    font-size: 18px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+button:hover {
+    background: #1b5e20;
+}
+.result {
+    margin-top: 20px;
+    font-size: 20px;
+    text-align: center;
+    font-weight: bold;
+}
+</style>
+</head>
+<body>
+
+<div class="container">
+<h1>📖 Quiz Bíblico</h1>
+
+<form id="quizForm">
+
+<div class="question">
+<h3>1. Quem são os patriarcas bíblicos?</h3>
+<label><input type="radio" name="q1" value="a"> Moisés, Arão e Josué</label>
+<label><input type="radio" name="q1" value="b"> Abraão, Isaque e Jacó</label>
+<label><input type="radio" name="q1" value="c"> Davi, Salomão e Saul</label>
+</div>
+
+<div class="question">
+<h3>2. Paulo saiu principalmente de onde e chegou aonde em suas viagens?</h3>
+<label><input type="radio" name="q2" value="a"> Jerusalém → Roma</label>
+<label><input type="radio" name="q2" value="b"> Tarso → diversas cidades do mundo gentílico</label>
+<label><input type="radio" name="q2" value="c"> Egito → Canaã</label>
+</div>
+
+<div class="question">
+<h3>4. Qual o nome do pai de Sansão?</h3>
+<label><input type="radio" name="q4" value="a"> Manoá</label>
+<label><input type="radio" name="q4" value="b"> Elcana</label>
+<label><input type="radio" name="q4" value="c"> Boaz</label>
+</div>
+
+<div class="question">
+<h3>5. Qual alternativa contém filhos de Jacó corretamente associados às mães?</h3>
+<label><input type="radio" name="q5" value="a"> José (Raquel), Rúben (Lia), Dã (serva de Raquel), Gade (serva de Lia)</label>
+<label><input type="radio" name="q5" value="b"> José (Lia), Levi (Raquel)</label>
+<label><input type="radio" name="q5" value="c"> Todos eram filhos de Raquel</label>
+</div>
+
+<div class="question">
+<h3>6. Qual foi um erro grave de Roboão?</h3>
+<label><input type="radio" name="q6" value="a"> Idolatria no Egito</label>
+<label><input type="radio" name="q6" value="b"> Ouvir os jovens e oprimir o povo</label>
+<label><input type="radio" name="q6" value="c"> Reconstruir o templo</label>
+</div>
+
+<div class="question">
+<h3>8. Por que o nome Berseba?</h3>
+<label><input type="radio" name="q8" value="a"> Poço do juramento entre Abraão e Abimeleque</label>
+<label><input type="radio" name="q8" value="b"> Lugar da criação</label>
+<label><input type="radio" name="q8" value="c"> Cidade de Davi</label>
+</div>
+
+<div class="question">
+<h3>10. O que foi o período teocrático?</h3>
+<label><input type="radio" name="q10" value="a"> Período dos reis</label>
+<label><input type="radio" name="q10" value="b"> Deus governava por meio de juízes</label>
+<label><input type="radio" name="q10" value="c"> Domínio romano</label>
+</div>
+
+<div class="question">
+<h3>11. O que são profetas maiores?</h3>
+<label><input type="radio" name="q11" value="a"> Os que viveram mais tempo</label>
+<label><input type="radio" name="q11" value="b"> Os que escreveram livros maiores</label>
+<label><input type="radio" name="q11" value="c"> Os mais antigos</label>
+</div>
+
+<div class="question">
+<h3>13. O que aconteceu em 586 a.C?</h3>
+<label><input type="radio" name="q13" value="a"> Construção do templo</label>
+<label><input type="radio" name="q13" value="b"> Queda de Jerusalém e destruição do templo</label>
+<label><input type="radio" name="q13" value="c"> Êxodo do Egito</label>
+</div>
+
+<div class="question">
+<h3>17. O que é a Septuaginta?</h3>
+<label><input type="radio" name="q17" value="a"> Tradução do AT para o grego</label>
+<label><input type="radio" name="q17" value="b"> Código de leis romanas</label>
+<label><input type="radio" name="q17" value="c"> Livro apócrifo</label>
+</div>
+
+<div class="question">
+<h3>19. Quanto tempo Jacó trabalhou para Labão?</h3>
+<label><input type="radio" name="q19" value="a"> 7 anos</label>
+<label><input type="radio" name="q19" value="b"> 14 anos</label>
+<label><input type="radio" name="q19" value="c"> 20 anos</label>
+</div>
+
+<div class="question">
+<h3>21. Quantos são os evangelhos?</h3>
+<label><input type="radio" name="q21" value="a"> 3</label>
+<label><input type="radio" name="q21" value="b"> 4</label>
+<label><input type="radio" name="q21" value="c"> 5</label>
+</div>
+
+<div class="question">
+<h3>25. Qual é a ordem correta da criação?</h3>
+<label><input type="radio" name="q25" value="a"> Luz, firmamento, terra, astros, animais, homem</label>
+<label><input type="radio" name="q25" value="b"> Homem, animais, luz</label>
+<label><input type="radio" name="q25" value="c"> Terra, homem, sol</label>
+</div>
+
+<button type="button" onclick="corrigir()">Finalizar Quiz</button>
+</form>
+
+<div class="result" id="resultado"></div>
+</div>
+
+<script>
+function corrigir() {
+    const respostas = {
+        q1: "b",
+        q2: "b",
+        q4: "a",
+        q5: "a",
+        q6: "b",
+        q8: "a",
+        q10: "b",
+        q11: "b",
+        q13: "b",
+        q17: "a",
+        q19: "c",
+        q21: "b",
+        q25: "a"
+    };
+
+    let pontos = 0;
+    let total = Object.keys(respostas).length;
+
+    for (let q in respostas) {
+        let marcada = document.querySelector(`input[name="${q}"]:checked`);
+        if (marcada && marcada.value === respostas[q]) {
+            pontos++;
+        }
+    }
+
+    document.getElementById("resultado").innerHTML =
+        `🎯 Você acertou <strong>${pontos}</strong> de <strong>${total}</strong> questões.`;
+}
+</script>
+
+</body>
+</html>
