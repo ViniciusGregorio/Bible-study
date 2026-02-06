@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Estudo Bíblico sobre Tipos de Amor</title>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    background: #f5f5f5;
+    color: #222;
+    padding: 20px;
+  }
+
+  h1, h2 {
+    text-align: center;
+    color: #2c3e50;
+  }
+
+  .container {
+    max-width: 800px;
+    margin: auto;
+  }
+
+  .love-type {
+    background: #ecf0f1;
+    margin: 10px 0;
+    padding: 15px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background 0.2s;
+  }
+
+  .love-type:hover {
+    background: #d0d7de;
+  }
+
+  .love-details {
+    display: none;
+    margin-top: 10px;
+    background: #ffffff;
+    padding: 10px;
+    border-left: 4px solid #2980b9;
+    border-radius: 4px;
+  }
+
+  .love-details p {
+    margin: 5px 0;
+  }
+
+  .footer {
+    text-align: center;
+    margin-top: 40px;
+    font-size: 0.9em;
+    color: #555;
+  }
+
+</style>
+</head>
+<body>
+  <div class="container">
+    <h1>Estudo Bíblico: Tipos de Amor</h1>
+    <p>Clique em cada tipo de amor para ver definição, exemplo bíblico e aplicação prática.</p>
+
+    <div class="love-type" data-target="agape">Ágape (Amor Incondicional, Ético)</div>
+    <div class="love-details" id="agape">
+      <p><strong>Definição:</strong> Amor sacrificial, que escolhe agir pelo bem do outro, independente de sentimentos ou retorno.</p>
+      <p><strong>Exemplo Bíblico:</strong> Jesus entregando a vida pelos pecadores (João 3:16, 1 João 4:10).</p>
+      <p><strong>Aplicação:</strong> Ideal para familiares difíceis ou pessoas com falhas; amor baseado em ação consciente e responsabilidade.</p>
+    </div>
+
+    <div class="love-type" data-target="filia">Filia (Amizade, Amor Fraternal)</div>
+    <div class="love-details" id="filia">
+      <p><strong>Definição:</strong> Amor baseado em afinidade, confiança e companheirismo.</p>
+      <p><strong>Exemplo Bíblico:</strong> David e Jônatas (1 Samuel 18–20).</p>
+      <p><strong>Aplicação:</strong> Entre amigos e irmãos espirituais; requer reciprocidade; cuidado com pessoas manipuladoras.</p>
+    </div>
+
+    <div class="love-type" data-target="storge">Storge (Amor Familiar Natural)</div>
+    <div class="love-details" id="storge">
+      <p><strong>Definição:</strong> Amor natural, instintivo, entre membros da família.</p>
+      <p><strong>Exemplo Bíblico:</strong> Cuidado entre pais e filhos, irmãos.</p>
+      <p><strong>Aplicação:</strong> Pode ser misturado com ágape; ótimo para família, mas com limites e consciência.</p>
+    </div>
+
+    <div class="love-type" data-target="eros">Eros (Amor Romântico/Sexual)</div>
+    <div class="love-details" id="eros">
+      <p><strong>Definição:</strong> Amor baseado em atração física, desejo e romance.</p>
+      <p><strong>Exemplo Bíblico:</strong> Cântico dos Cânticos, expressando desejo e união conjugal.</p>
+      <p><strong>Aplicação:</strong> Apenas no contexto ético de casamento; nunca com familiares ou pessoas vulneráveis emocionalmente.</p>
+    </div>
+
+    <div class="footer">
+      Estudo baseado em princípios bíblicos. Aplicação prática: agir com discernimento e amor ético.
+    </div>
+  </div>
+
+  <script>
+    const loveTypes = document.querySelectorAll('.love-type');
+
+    loveTypes.forEach(item => {
+      item.addEventListener('click', () => {
+        const targetId = item.dataset.target;
+        const detail = document.getElementById(targetId);
+        const allDetails = document.querySelectorAll('.love-details');
+
+        // Esconde todos os outros detalhes
+        allDetails.forEach(d => {
+          if (d !== detail) d.style.display = 'none';
+        });
+
+        // Alterna o display do detalhamento clicado
+        detail.style.display = (detail.style.display === 'block') ? 'none' : 'block';
+      });
+    });
+  </script>
+</body>
+</html>
