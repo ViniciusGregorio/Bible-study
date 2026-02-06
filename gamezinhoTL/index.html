@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>RPG de Amor Ético Futurista</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@500&display=swap');
+
+body {
+  margin: 0;
+  font-family: 'Orbitron', sans-serif;
+  background: radial-gradient(circle at 20% 20%, #0f0c29, #302b63, #24243e);
+  color: #00ffea;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+h1 {
+  margin-top: 20px;
+  font-size: 2.5em;
+  text-shadow: 0 0 10px #00ffea, 0 0 20px #00ffea;
+}
+
+.panel {
+  margin-top: 20px;
+  width: 90%;
+  max-width: 1000px;
+  background: rgba(0,0,0,0.5);
+  border: 2px solid #00ffea;
+  border-radius: 15px;
+  padding: 20px;
+  box-shadow: 0 0 20px #00ffea;
+}
+
+.stats {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 15px;
+}
+
+.bar-container {
+  width: 100%;
+  background: rgba(0,255,234,0.1);
+  border-radius: 10px;
+  overflow: hidden;
+  height: 25px;
+  box-shadow: 0 0 5px #00ffea;
+}
+
+.bar {
+  height: 100%;
+  width: 0%;
+  text-align: right;
+  padding-right: 5px;
+  line-height: 25px;
+  color: #000;
+  font-weight: bold;
+}
+
+.bar.agape { background: #00ffea; }
+.bar.filia { background: #ff00ff; }
+.bar.storge { background: #00ff00; }
+.bar.eros { background: #ff9900; }
+.bar.energy { background: #00ffff; }
+
+.game {
+  margin-top: 20px;
+  background: rgba(255,255,255,0.05);
+  border: 2px solid #00ffea;
+  border-radius: 10px;
+  padding: 20px;
+  width: 90%;
+  max-width: 800px;
+  text-align: center;
+}
+
+.game button {
+  background: rgba(0,255,234,0.2);
+  border: 2px solid #00ffea;
+  padding: 10px 15px;
+  margin: 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  color: #00ffea;
+  font-weight: bold;
+  transition: all 0.2s;
+}
+
+.game button:hover {
+  background: #00ffea;
+  color: #000;
+}
+
+.log {
+  margin-top: 20px;
+  background: rgba(0,255,234,0.05);
+  padding: 10px;
+  border-radius: 8px;
+  max-height: 300px;
+  overflow-y: auto;
+}
+
+</style>
+</head>
+<body>
+<h1>RPG Amor Ético Futurista</h1>
+
+<div class="panel stats">
+  <div>Ágape <div class="bar-container"><div id="agape-bar" class="bar agape">0</div></div></div>
+  <div>Filia <div class="bar-container"><div id="filia-bar" class="bar filia">0</div></div></div>
+  <div>Storge <div class="bar-container"><div id="storge-bar" class="bar storge">0</div></div></div>
+  <div>Eros <div class="bar-container"><div id="eros-bar" class="bar eros">0</div></div></div>
+  <div>Energia <div class="bar-container"><div id="energy-bar" class="bar energy">100</div></div></div>
+</div>
+
+<div class="game">
+  <h2 id="situation-text">Carregando situação...</h2>
+  <div id="choices"></div>
+</div>
+
+<div class="log">
+  <h3>Registro de decisões</h3>
+  <div id="log-entries"></div>
+</div>
+
+<script>
+let player = {
+  agape: 0,
+  filia: 0,
+  storge: 0,
+  eros: 0,
+  energy: 100
+};
+
+const situations = [
+  {
+    text: "Sua mãe está irritada e te critica injustamente.",
+    options: [
+      {text:"Acalmar e agir com paciência (Ágape)", effects:{agape:10, energy:5}},
+      {text:"Responder irritado", effects:{agape:-5, energy:-10}},
+      {text:"Ignorar", effects:{energy:-2}}
+    ]
+  },
+  {
+    text: "Um amigo confia em você para um conselho delicado.",
+    options: [
+      {text:"Ouvir com atenção e aconselhar com amor (Filia)", effects:{filia:10, energy:5}},
+      {text:"Dar conselho precipitado ou crítico", effects:{filia:-5, energy:-5}},
+      {text:"Evitar se envolver", effects:{energy:-2}}
+    ]
+  },
+  {
+    text: "Seu pai precisa de ajuda para tarefas físicas.",
+    options: [
+      {text:"Ajudar com disposição (Storge)", effects:{storge:10, energy:-2}},
+      {text:"Protestar ou reclamar", effects:{storge:-5, energy:-5}},
+      {text:"Deixar que ele se vire sozinho", effects:{energy:-5}}
+    ]
+  },
+  {
+    text: "Você encontra sua futura esposa. Como agir?",
+    options: [
+      {text:"Tratar com respeito e amor ético (Eros + Ágape)", effects:{eros:10, agape:5, energy:-2}},
+      {text:"Agir impulsivamente", effects:{eros:-5, energy:-10}},
+      {text:"Ignorar oportunidade de construir relacionamento saudável", effects:{energy:-5}}
+    ]
+  }
+];
+
+// Atualiza as barras de atributos
+function updateBars() {
+  document.getElementById('agape-bar').style.width = player.agape + '%';
+  document.getElementById('agape-bar').textContent = player.agape;
+
+  document.getElementById('filia-bar').style.width = player.filia + '%';
+  document.getElementById('filia-bar').textContent = player.filia;
+
+  document.getElementById('storge-bar').style.width = player.storge + '%';
+  document.getElementById('storge-bar').textContent = player.storge;
+
+  document.getElementById('eros-bar').style.width = player.eros + '%';
+  document.getElementById('eros-bar').textContent = player.eros;
+
+  document.getElementById('energy-bar').style.width = player.energy + '%';
+  document.getElementById('energy-bar').textContent = player.energy;
+}
+
+// Salva progresso
+function saveProgress() {
+  localStorage.setItem('player', JSON.stringify(player));
+  let log = JSON.parse(localStorage.getItem('log')) || [];
+  localStorage.setItem('log', JSON.stringify(log));
+}
+
+// Carrega progresso
+function loadProgress() {
+  let savedPlayer = JSON.parse(localStorage.getItem('player'));
+  if(savedPlayer) player = savedPlayer;
+  let log = JSON.parse(localStorage.getItem('log')) || [];
+  const logDiv = document.getElementById('log-entries');
+  logDiv.innerHTML = '';
+  log.forEach(e => {
+    const entry = document.createElement('div');
+    entry.textContent = e;
+    logDiv.appendChild(entry);
+  });
+  updateBars();
+}
+
+// Carrega situação aleatória
+function loadSituation() {
+  const situation = situations[Math.floor(Math.random() * situations.length)];
+  document.getElementById('situation-text').textContent = situation.text;
+  const choicesDiv = document.getElementById('choices');
+  choicesDiv.innerHTML = '';
+  situation.options.forEach(opt => {
+    const btn = document.createElement('button');
+    btn.textContent = opt.text;
+    btn.addEventListener('click', () => handleChoice(opt, situation.text));
+    choicesDiv.appendChild(btn);
+  });
+}
+
+// Processa escolha
+function handleChoice(option, situationText) {
+  for(const key in option.effects){
+    if(player[key] !== undefined){
+      player[key] += option.effects[key];
+      if(player[key] > 100) player[key] = 100;
+      if(player[key] < 0) player[key] = 0;
+    }
+  }
+  updateBars();
+  const logDiv = document.getElementById('log-entries');
+  const entry = document.createElement('div');
+  entry.style.marginBottom = "5px";
+  entry.textContent = `${situationText} -> Escolha: "${option.text}"`;
+  logDiv.prepend(entry);
+
+  let log = JSON.parse(localStorage.getItem('log')) || [];
+  log.unshift(`${situationText} -> Escolha: "${option.text}"`);
+  localStorage.setItem('log', JSON.stringify(log));
+
+  saveProgress();
+  loadSituation();
+}
+
+// Inicialização
+window.onload = () => {
+  loadProgress();
+  loadSituation();
+};
+</script>
+</body>
+</html>
