@@ -1,219 +1,259 @@
-<!DOCTYPE html>
+    <!DOCTYPE html>
 <html lang="pt-br">
 <head>
 <meta charset="UTF-8">
-<title>Quiz Bíblico 2.0</title>
+<title>APOCALIPSE 22 - Quiz Bíblico</title>
 <style>
-body {
-    font-family: 'Segoe UI', sans-serif;
-    background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
-    color: white;
-    text-align: center;
-    margin: 0;
-    padding: 0;
+body{
+    margin:0;
+    font-family:Arial, sans-serif;
+    background:radial-gradient(circle at top, #0f0c29, #302b63, #24243e);
+    color:white;
+    text-align:center;
 }
 
-.container {
-    width: 90%;
-    max-width: 800px;
-    margin: auto;
-    padding: 20px;
+.container{
+    max-width:900px;
+    margin:auto;
+    padding:20px;
 }
 
-h1 {
-    color: #00ffff;
-    text-shadow: 0 0 15px cyan;
+h1{
+    color:#00ffff;
+    text-shadow:0 0 20px cyan;
 }
 
-button {
-    padding: 10px 20px;
-    margin: 10px;
-    border: none;
-    background: cyan;
-    color: black;
-    cursor: pointer;
-    border-radius: 8px;
-    font-weight: bold;
-    transition: 0.3s;
+button{
+    padding:10px 20px;
+    margin:8px;
+    border:none;
+    border-radius:6px;
+    background:#00ffff;
+    font-weight:bold;
+    cursor:pointer;
 }
 
-button:hover {
-    background: white;
+button:hover{
+    background:white;
 }
 
-input {
-    padding: 10px;
-    border-radius: 5px;
-    border: none;
+.card{
+    background:rgba(255,255,255,0.08);
+    padding:20px;
+    border-radius:12px;
+    box-shadow:0 0 15px cyan;
 }
 
-.card {
-    background: rgba(255,255,255,0.1);
-    padding: 20px;
-    border-radius: 10px;
-    margin-top: 20px;
-    box-shadow: 0 0 15px cyan;
+.hidden{ display:none; }
+
+.progress-bar{
+    height:15px;
+    background:#333;
+    border-radius:10px;
+    overflow:hidden;
+    margin:15px 0;
 }
 
-.hidden {
-    display: none;
+.progress{
+    height:100%;
+    width:0%;
+    background:cyan;
 }
 
-.ranking {
-    text-align: left;
+.timer{
+    font-size:20px;
+    color:#ff4d4d;
 }
 </style>
 </head>
 <body>
 
 <div class="container">
-    <h1>⚡ Quiz Bíblico Futurista ⚡</h1>
+<h1>⚡ APOCALIPSE 22 ⚡</h1>
 
-    <div id="start">
-        <input type="text" id="playerName" placeholder="Digite seu nome">
-        <br>
-        <button onclick="startQuiz()">Iniciar</button>
-    </div>
+<div id="start">
+<input id="name" placeholder="Digite seu nome">
+<br>
+<select id="difficulty">
+<option value="easy">Fácil</option>
+<option value="medium">Médio</option>
+<option value="hard">Difícil</option>
+</select>
+<br>
+<button onclick="start()">Iniciar Missão</button>
+</div>
 
-    <div id="quiz" class="hidden">
-        <h2 id="theme"></h2>
-        <div class="card">
-            <p id="question"></p>
-            <div id="answers"></div>
-        </div>
-        <p>Pontuação: <span id="score">0</span></p>
-    </div>
+<div id="game" class="hidden">
+<h2 id="theme"></h2>
+<div class="progress-bar"><div class="progress" id="progress"></div></div>
+<div class="timer">Tempo: <span id="time">15</span>s</div>
+<div class="card">
+<p id="question"></p>
+<div id="answers"></div>
+</div>
+<p>Pontos: <span id="score">0</span></p>
+<p>Combo: <span id="combo">0</span></p>
+</div>
 
-    <div id="result" class="hidden">
-        <h2>Resultado Final</h2>
-        <p id="finalScore"></p>
-        <h3>Explicações:</h3>
-        <div id="explanations"></div>
-        <button onclick="showRanking()">Ver Ranking</button>
-    </div>
+<div id="result" class="hidden">
+<h2>MISSÃO FINALIZADA</h2>
+<p id="final"></p>
+<h3>Medalha:</h3>
+<p id="medal"></p>
+<h3>Explicações:</h3>
+<div id="explain"></div>
+<button onclick="ranking()">Ver Ranking</button>
+</div>
 
-    <div id="ranking" class="hidden">
-        <h2>🏆 Ranking</h2>
-        <div class="ranking" id="rankingList"></div>
-        <button onclick="restart()">Jogar Novamente</button>
-    </div>
+<div id="ranking" class="hidden">
+<h2>🏆 Ranking Global Local</h2>
+<div id="rankList"></div>
+<button onclick="location.reload()">Reiniciar</button>
+</div>
 </div>
 
 <script>
 let questions = [
-    {
-        theme: "Antigo Testamento",
-        question: "Quem construiu a arca?",
-        answers: ["Moisés", "Abraão", "Noé", "Davi"],
-        correct: 2,
-        explanation: "Noé construiu a arca por ordem de Deus (Gênesis 6)."
-    },
-    {
-        theme: "Novo Testamento",
-        question: "Quem batizou Jesus?",
-        answers: ["Pedro", "João Batista", "Paulo", "Tiago"],
-        correct: 1,
-        explanation: "João Batista batizou Jesus no rio Jordão."
-    },
-    {
-        theme: "Profetas",
-        question: "Quem enfrentou os profetas de Baal no Monte Carmelo?",
-        answers: ["Isaías", "Jeremias", "Elias", "Ezequiel"],
-        correct: 2,
-        explanation: "Elias desafiou os profetas de Baal (1 Reis 18)."
-    }
+{
+theme:"Gênesis",
+difficulty:"easy",
+question:"Quem construiu a arca?",
+answers:["Moisés","Noé","Abraão","Davi"],
+correct:1,
+explanation:"Noé construiu a arca conforme ordem divina (Gênesis 6)."
+},
+{
+theme:"Evangelhos",
+difficulty:"medium",
+question:"Quantos dias Jesus jejuou no deserto?",
+answers:["30","40","7","12"],
+correct:1,
+explanation:"Jesus jejuou 40 dias no deserto."
+},
+{
+theme:"Profecia",
+difficulty:"hard",
+question:"Quantas trombetas são mencionadas no Apocalipse?",
+answers:["5","6","7","12"],
+correct:2,
+explanation:"São mencionadas 7 trombetas no Apocalipse."
+}
 ];
 
-let currentQuestion = 0;
+let filtered = [];
+let index = 0;
 let score = 0;
-let player = "";
+let combo = 0;
+let timer;
+let timeLeft = 15;
+let player;
 
-function startQuiz() {
-    player = document.getElementById("playerName").value;
-    if(player === "") {
-        alert("Digite seu nome!");
-        return;
-    }
-    document.getElementById("start").classList.add("hidden");
-    document.getElementById("quiz").classList.remove("hidden");
-    loadQuestion();
+function start(){
+player = document.getElementById("name").value;
+let diff = document.getElementById("difficulty").value;
+if(player===""){ alert("Digite seu nome"); return; }
+
+filtered = questions.filter(q=>q.difficulty===diff);
+document.getElementById("start").classList.add("hidden");
+document.getElementById("game").classList.remove("hidden");
+loadQuestion();
 }
 
-function loadQuestion() {
-    let q = questions[currentQuestion];
-    document.getElementById("theme").innerText = "Tema: " + q.theme;
-    document.getElementById("question").innerText = q.question;
-
-    let answersDiv = document.getElementById("answers");
-    answersDiv.innerHTML = "";
-
-    q.answers.forEach((answer, index) => {
-        let btn = document.createElement("button");
-        btn.innerText = answer;
-        btn.onclick = () => checkAnswer(index);
-        answersDiv.appendChild(btn);
-    });
+function loadQuestion(){
+let q = filtered[index];
+document.getElementById("theme").innerText="Tema: "+q.theme;
+document.getElementById("question").innerText=q.question;
+let ansDiv=document.getElementById("answers");
+ansDiv.innerHTML="";
+q.answers.forEach((a,i)=>{
+let btn=document.createElement("button");
+btn.innerText=a;
+btn.onclick=()=>check(i);
+ansDiv.appendChild(btn);
+});
+timeLeft=15;
+document.getElementById("time").innerText=timeLeft;
+startTimer();
+updateProgress();
 }
 
-function checkAnswer(index) {
-    if(index === questions[currentQuestion].correct) {
-        score += 10;
-    }
-
-    currentQuestion++;
-
-    if(currentQuestion < questions.length) {
-        loadQuestion();
-    } else {
-        showResult();
-    }
-
-    document.getElementById("score").innerText = score;
+function startTimer(){
+clearInterval(timer);
+timer=setInterval(()=>{
+timeLeft--;
+document.getElementById("time").innerText=timeLeft;
+if(timeLeft<=0){
+clearInterval(timer);
+next();
+}
+},1000);
 }
 
-function showResult() {
-    document.getElementById("quiz").classList.add("hidden");
-    document.getElementById("result").classList.remove("hidden");
-
-    document.getElementById("finalScore").innerText =
-        player + ", sua pontuação foi: " + score;
-
-    let explanationsDiv = document.getElementById("explanations");
-    explanationsDiv.innerHTML = "";
-
-    questions.forEach(q => {
-        let p = document.createElement("p");
-        p.innerText = q.explanation;
-        explanationsDiv.appendChild(p);
-    });
-
-    saveRanking();
+function check(i){
+clearInterval(timer);
+if(i===filtered[index].correct){
+combo++;
+score+=10+(combo*2);
+}else{
+combo=0;
+}
+document.getElementById("score").innerText=score;
+document.getElementById("combo").innerText=combo;
+next();
 }
 
-function saveRanking() {
-    let ranking = JSON.parse(localStorage.getItem("ranking")) || [];
-    ranking.push({name: player, score: score});
-    ranking.sort((a,b) => b.score - a.score);
-    localStorage.setItem("ranking", JSON.stringify(ranking));
+function next(){
+index++;
+if(index<filtered.length){
+loadQuestion();
+}else{
+finish();
+}
 }
 
-function showRanking() {
-    document.getElementById("result").classList.add("hidden");
-    document.getElementById("ranking").classList.remove("hidden");
-
-    let ranking = JSON.parse(localStorage.getItem("ranking")) || [];
-    let rankingList = document.getElementById("rankingList");
-    rankingList.innerHTML = "";
-
-    ranking.forEach((player, index) => {
-        let p = document.createElement("p");
-        p.innerText = (index+1) + "º - " + player.name + " (" + player.score + " pts)";
-        rankingList.appendChild(p);
-    });
+function updateProgress(){
+let percent=(index/filtered.length)*100;
+document.getElementById("progress").style.width=percent+"%";
 }
 
-function restart() {
-    location.reload();
+function finish(){
+document.getElementById("game").classList.add("hidden");
+document.getElementById("result").classList.remove("hidden");
+
+let medalha="🥉 Servo Iniciante";
+if(score>30) medalha="🥈 Guerreiro da Palavra";
+if(score>60) medalha="🥇 Guardião do Trono";
+
+document.getElementById("final").innerText=player+", Pontuação: "+score;
+document.getElementById("medal").innerText=medalha;
+
+let explain=document.getElementById("explain");
+filtered.forEach(q=>{
+let p=document.createElement("p");
+p.innerText=q.explanation;
+explain.appendChild(p);
+});
+
+saveRanking();
+}
+
+function saveRanking(){
+let rank=JSON.parse(localStorage.getItem("rankA22"))||[];
+rank.push({name:player,score:score});
+rank.sort((a,b)=>b.score-a.score);
+localStorage.setItem("rankA22",JSON.stringify(rank));
+}
+
+function ranking(){
+document.getElementById("result").classList.add("hidden");
+document.getElementById("ranking").classList.remove("hidden");
+let rank=JSON.parse(localStorage.getItem("rankA22"))||[];
+let div=document.getElementById("rankList");
+rank.forEach((r,i)=>{
+let p=document.createElement("p");
+p.innerText=(i+1)+"º - "+r.name+" ("+r.score+" pts)";
+div.appendChild(p);
+});
 }
 </script>
 
