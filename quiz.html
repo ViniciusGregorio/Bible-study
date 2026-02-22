@@ -1,184 +1,220 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt-br">
 <head>
 <meta charset="UTF-8">
-<title>Quiz Bíblico</title>
-
+<title>Quiz Bíblico 2.0</title>
 <style>
 body {
-    font-family: Arial, Helvetica, sans-serif;
-    background: #f2f2f2;
-    padding: 20px;
+    font-family: 'Segoe UI', sans-serif;
+    background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+    color: white;
+    text-align: center;
+    margin: 0;
+    padding: 0;
 }
 
 .container {
-    max-width: 700px;
-    background: #ffffff;
+    width: 90%;
+    max-width: 800px;
     margin: auto;
-    padding: 30px;
-    border-radius: 10px;
+    padding: 20px;
 }
 
 h1 {
-    text-align: center;
-}
-
-.question {
-    font-size: 20px;
-    margin-bottom: 15px;
-}
-
-.options label {
-    display: block;
-    margin: 8px 0;
-    cursor: pointer;
-}
-
-.explanation {
-    margin-top: 15px;
-    padding: 10px;
-    background: #f9f9f9;
-    border-left: 4px solid #999;
-    display: none;
-    font-style: italic;
+    color: #00ffff;
+    text-shadow: 0 0 15px cyan;
 }
 
 button {
-    margin-top: 20px;
     padding: 10px 20px;
-    font-size: 16px;
+    margin: 10px;
+    border: none;
+    background: cyan;
+    color: black;
     cursor: pointer;
+    border-radius: 8px;
+    font-weight: bold;
+    transition: 0.3s;
 }
 
-.result {
-    font-size: 22px;
-    text-align: center;
+button:hover {
+    background: white;
+}
+
+input {
+    padding: 10px;
+    border-radius: 5px;
+    border: none;
+}
+
+.card {
+    background: rgba(255,255,255,0.1);
+    padding: 20px;
+    border-radius: 10px;
+    margin-top: 20px;
+    box-shadow: 0 0 15px cyan;
+}
+
+.hidden {
+    display: none;
+}
+
+.ranking {
+    text-align: left;
 }
 </style>
 </head>
-
 <body>
 
 <div class="container">
-<h1>📖 Quiz Bíblico</h1>
+    <h1>⚡ Quiz Bíblico Futurista ⚡</h1>
 
-<div id="quiz">
-    <div class="question" id="question"></div>
-    <div class="options" id="options"></div>
-    <div class="explanation" id="explanation"></div>
-    <button onclick="proxima()">Próxima pergunta</button>
-</div>
+    <div id="start">
+        <input type="text" id="playerName" placeholder="Digite seu nome">
+        <br>
+        <button onclick="startQuiz()">Iniciar</button>
+    </div>
 
-<div id="final" style="display:none;" class="result"></div>
+    <div id="quiz" class="hidden">
+        <h2 id="theme"></h2>
+        <div class="card">
+            <p id="question"></p>
+            <div id="answers"></div>
+        </div>
+        <p>Pontuação: <span id="score">0</span></p>
+    </div>
+
+    <div id="result" class="hidden">
+        <h2>Resultado Final</h2>
+        <p id="finalScore"></p>
+        <h3>Explicações:</h3>
+        <div id="explanations"></div>
+        <button onclick="showRanking()">Ver Ranking</button>
+    </div>
+
+    <div id="ranking" class="hidden">
+        <h2>🏆 Ranking</h2>
+        <div class="ranking" id="rankingList"></div>
+        <button onclick="restart()">Jogar Novamente</button>
+    </div>
 </div>
 
 <script>
-
-/* 🟢 FÁCIL – ANTIGO TESTAMENTO */
-{ q:"Quem criou o mundo?", o:["Moisés","Deus","Adão","Noé"], a:1, e:"📖 Gênesis 1:1 — Deus criou os céus e a terra."},
-{ q:"Quem foi o primeiro homem?", o:["Noé","Abraão","Adão","Caim"], a:2, e:"📖 Gênesis 2:7 — Deus formou o homem do pó da terra."},
-{ q:"Quem foi a primeira mulher?", o:["Eva","Sara","Rebeca","Raquel"], a:0, e:"📖 Gênesis 2:22 — Eva foi formada da costela de Adão."},
-{ q:"Quem construiu a arca?", o:["Abraão","Noé","Moisés","José"], a:1, e:"📖 Gênesis 6 — Noé construiu a arca por ordem de Deus."},
-{ q:"Quantos dias choveu no dilúvio?", o:["7","40","70","100"], a:1, e:"📖 Gênesis 7:12 — Choveu 40 dias e 40 noites."},
-{ q:"Quem foi chamado pai da fé?", o:["Isaque","Jacó","Abraão","José"], a:2, e:"📖 Romanos 4:11 — Abraão creu em Deus."},
-{ q:"Qual era o nome da esposa de Abraão?", o:["Rebeca","Raquel","Sara","Ana"], a:2, e:"📖 Gênesis 17 — Sara foi esposa de Abraão."},
-{ q:"Quem libertou Israel do Egito?", o:["José","Moisés","Arão","Josué"], a:1, e:"📖 Êxodo 3 — Deus chamou Moisés."},
-{ q:"Onde Moisés recebeu os Dez Mandamentos?", o:["Jerusalém","Egito","Monte Sinai","Babilônia"], a:2, e:"📖 Êxodo 19–20."},
-{ q:"Quem abriu o Mar Vermelho?", o:["Josué","Moisés","Arão","Deus"], a:3, e:"📖 Êxodo 14 — Foi o poder de Deus."},
-
-/* 🟢 FÁCIL – NOVO TESTAMENTO */
-{ q:"Quem nasceu em Belém?", o:["João Batista","Jesus","Pedro","Paulo"], a:1, e:"📖 Mateus 2:1 — Jesus nasceu em Belém."},
-{ q:"Quem foi a mãe de Jesus?", o:["Isabel","Maria","Marta","Ana"], a:1, e:"📖 Lucas 1:30–31."},
-{ q:"Quem batizou Jesus?", o:["Pedro","João Batista","Paulo","Tiago"], a:1, e:"📖 Mateus 3:13."},
-{ q:"Qual milagre Jesus fez em Caná?", o:["Multiplicou pães","Curou cegos","Andou sobre águas","Transformou água em vinho"], a:3, e:"📖 João 2 — Primeiro milagre de Jesus."},
-{ q:"Quantos discípulos Jesus escolheu?", o:["10","11","12","13"], a:2, e:"📖 Mateus 10."},
-{ q:"Quem negou Jesus três vezes?", o:["João","Pedro","Tiago","Judas"], a:1, e:"📖 Lucas 22:61."},
-{ q:"Quem traiu Jesus?", o:["Pedro","Paulo","Judas","Tomé"], a:2, e:"📖 Mateus 26:14."},
-{ q:"Jesus morreu em qual lugar?", o:["Getsêmani","Jerusalém","Calvário","Belém"], a:2, e:"📖 Mateus 27."},
-{ q:"Jesus ressuscitou em quantos dias?", o:["1","2","3","7"], a:2, e:"📖 1 Coríntios 15:4."},
-{ q:"Quem anunciou a ressurreição às mulheres?", o:["Discípulos","Anjos","Fariseus","Soldados"], a:1, e:"📖 Mateus 28."},
-
-/* 🟡 MÉDIO */
-{ q:"Quem sucedeu Moisés?", o:["Calebe","Josué","Arão","Gideão"], a:1, e:"📖 Josué 1:1–2."},
-{ q:"Quem derrotou Golias?", o:["Saul","Davi","Sansão","Samuel"], a:1, e:"📖 1 Samuel 17."},
-{ q:"Qual rei construiu o templo?", o:["Davi","Salomão","Saul","Josias"], a:1, e:"📖 1 Reis 6."},
-{ q:"Quem foi lançado na cova dos leões?", o:["Jeremias","Elias","Daniel","Ezequiel"], a:2, e:"📖 Daniel 6."},
-{ q:"Quem subiu ao céu num redemoinho?", o:["Elias","Eliseu","Moisés","Isaías"], a:0, e:"📖 2 Reis 2."},
-{ q:"Quem foi engolido por um grande peixe?", o:["Jó","Jonas","Amós","Naum"], a:1, e:"📖 Jonas 1."},
-{ q:"Qual profeta falou do vale de ossos secos?", o:["Isaías","Ezequiel","Daniel","Oséias"], a:1, e:"📖 Ezequiel 37."},
-{ q:"Quem escreveu a maioria dos Salmos?", o:["Salomão","Moisés","Davi","Asafe"], a:2, e:"📖 Salmos."},
-{ q:"Quem escreveu Atos dos Apóstolos?", o:["Paulo","Pedro","Lucas","João"], a:2, e:"📖 Atos 1:1."},
-{ q:"Quem perseguiu a igreja antes da conversão?", o:["Pedro","João","Paulo","Barnabé"], a:2, e:"📖 Atos 9."},
-
-/* 🔴 AVANÇADO */
-{ q:"Qual império dominava Israel no tempo de Jesus?", o:["Babilônico","Persa","Romano","Grego"], a:2, e:"📖 Lucas 2 — Império Romano."},
-{ q:"Qual idioma era comum no Novo Testamento?", o:["Hebraico","Latim","Grego","Aramaico"], a:2, e:"📖 O grego koiné."},
-{ q:"Quem escreveu Apocalipse?", o:["Pedro","Paulo","João","Tiago"], a:2, e:"📖 Apocalipse 1:9."},
-{ q:"Quantas pragas caíram no Egito?", o:["7","10","12","14"], a:1, e:"📖 Êxodo 7–12."},
-{ q:"Qual livro não menciona Deus explicitamente?", o:["Jó","Ester","Rute","Cantares"], a:1, e:"📖 Livro de Ester."},
-{ q:"Quem interpretou o sonho de Nabucodonosor?", o:["José","Daniel","Ezequiel","Jeremias"], a:1, e:"📖 Daniel 2."},
-{ q:"Qual apóstolo foi crucificado de cabeça para baixo?", o:["Paulo","Pedro","André","João"], a:1, e:"📖 Tradição histórica cristã."},
-{ q:"Quem escreveu Hebreus?", o:["Paulo","Autor desconhecido","Pedro","Lucas"], a:1, e:"📖 Autoria debatida."},
-{ q:"Qual é o último inimigo a ser destruído?", o:["Satanás","Pecado","Morte","Inferno"], a:2, e:"📖 1 Coríntios 15:26."},
-{ q:"Quantos livros tem a Bíblia?", o:["39","66","27","73"], a:1, e:"📖 39 AT + 27 NT = 66 livros."}
+let questions = [
+    {
+        theme: "Antigo Testamento",
+        question: "Quem construiu a arca?",
+        answers: ["Moisés", "Abraão", "Noé", "Davi"],
+        correct: 2,
+        explanation: "Noé construiu a arca por ordem de Deus (Gênesis 6)."
+    },
+    {
+        theme: "Novo Testamento",
+        question: "Quem batizou Jesus?",
+        answers: ["Pedro", "João Batista", "Paulo", "Tiago"],
+        correct: 1,
+        explanation: "João Batista batizou Jesus no rio Jordão."
+    },
+    {
+        theme: "Profetas",
+        question: "Quem enfrentou os profetas de Baal no Monte Carmelo?",
+        answers: ["Isaías", "Jeremias", "Elias", "Ezequiel"],
+        correct: 2,
+        explanation: "Elias desafiou os profetas de Baal (1 Reis 18)."
+    }
 ];
-let atual = 0;
-let pontos = 0;
-let respondida = false;
 
-function carregar() {
-    const p = perguntas[atual];
-    document.getElementById("question").innerText =
-        (atual + 1) + ") " + p.q;
+let currentQuestion = 0;
+let score = 0;
+let player = "";
 
-    const options = document.getElementById("options");
-    options.innerHTML = "";
-    document.getElementById("explanation").style.display = "none";
-    respondida = false;
+function startQuiz() {
+    player = document.getElementById("playerName").value;
+    if(player === "") {
+        alert("Digite seu nome!");
+        return;
+    }
+    document.getElementById("start").classList.add("hidden");
+    document.getElementById("quiz").classList.remove("hidden");
+    loadQuestion();
+}
 
-    p.o.forEach((op, i) => {
-        const label = document.createElement("label");
-        label.innerHTML = `<input type="radio" name="opcao" onclick="responder(${i})"> ${op}`;
-        options.appendChild(label);
+function loadQuestion() {
+    let q = questions[currentQuestion];
+    document.getElementById("theme").innerText = "Tema: " + q.theme;
+    document.getElementById("question").innerText = q.question;
+
+    let answersDiv = document.getElementById("answers");
+    answersDiv.innerHTML = "";
+
+    q.answers.forEach((answer, index) => {
+        let btn = document.createElement("button");
+        btn.innerText = answer;
+        btn.onclick = () => checkAnswer(index);
+        answersDiv.appendChild(btn);
     });
 }
 
-function responder(i) {
-    if (respondida) return;
-    respondida = true;
+function checkAnswer(index) {
+    if(index === questions[currentQuestion].correct) {
+        score += 10;
+    }
 
-    const p = perguntas[atual];
-    if (i === p.a) {
-        pontos++;
+    currentQuestion++;
+
+    if(currentQuestion < questions.length) {
+        loadQuestion();
     } else {
-        const exp = document.getElementById("explanation");
-        exp.innerText = p.e;
-        exp.style.display = "block";
-    }
-}
-
-function proxima() {
-    if (!respondida) {
-        alert("Escolha uma alternativa antes de prosseguir.");
-        return;
+        showResult();
     }
 
-    atual++;
-    if (atual < perguntas.length) {
-        carregar();
-    } else {
-        finalizar();
-    }
+    document.getElementById("score").innerText = score;
 }
 
-function finalizar() {
-    document.getElementById("quiz").style.display = "none";
-    document.getElementById("final").style.display = "block";
-    document.getElementById("final").innerHTML =
-        `Você acertou <b>${pontos}</b> de ${perguntas.length} perguntas.<br>📖 Continue estudando a Palavra!`;
+function showResult() {
+    document.getElementById("quiz").classList.add("hidden");
+    document.getElementById("result").classList.remove("hidden");
+
+    document.getElementById("finalScore").innerText =
+        player + ", sua pontuação foi: " + score;
+
+    let explanationsDiv = document.getElementById("explanations");
+    explanationsDiv.innerHTML = "";
+
+    questions.forEach(q => {
+        let p = document.createElement("p");
+        p.innerText = q.explanation;
+        explanationsDiv.appendChild(p);
+    });
+
+    saveRanking();
 }
 
-carregar();
+function saveRanking() {
+    let ranking = JSON.parse(localStorage.getItem("ranking")) || [];
+    ranking.push({name: player, score: score});
+    ranking.sort((a,b) => b.score - a.score);
+    localStorage.setItem("ranking", JSON.stringify(ranking));
+}
+
+function showRanking() {
+    document.getElementById("result").classList.add("hidden");
+    document.getElementById("ranking").classList.remove("hidden");
+
+    let ranking = JSON.parse(localStorage.getItem("ranking")) || [];
+    let rankingList = document.getElementById("rankingList");
+    rankingList.innerHTML = "";
+
+    ranking.forEach((player, index) => {
+        let p = document.createElement("p");
+        p.innerText = (index+1) + "º - " + player.name + " (" + player.score + " pts)";
+        rankingList.appendChild(p);
+    });
+}
+
+function restart() {
+    location.reload();
+}
 </script>
 
 </body>
