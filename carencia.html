@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Forjados na Espera</title>
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', sans-serif;
+}
+
+body {
+    background: #0f1115;
+    color: #e4e4e4;
+    line-height: 1.6;
+}
+
+header {
+    background: linear-gradient(135deg, #111827, #1f2937);
+    padding: 80px 20px;
+    text-align: center;
+}
+
+header h1 {
+    font-size: 3rem;
+    margin-bottom: 20px;
+}
+
+header p {
+    font-size: 1.2rem;
+    max-width: 700px;
+    margin: auto;
+    color: #9ca3af;
+}
+
+section {
+    padding: 60px 20px;
+    max-width: 1000px;
+    margin: auto;
+}
+
+.section-title {
+    font-size: 2rem;
+    margin-bottom: 20px;
+    color: #fbbf24;
+}
+
+.card {
+    background: #1a1d24;
+    padding: 25px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    transition: 0.3s ease;
+    border-left: 4px solid #fbbf24;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    background: #20242c;
+}
+
+.quote {
+    font-style: italic;
+    color: #9ca3af;
+    margin-top: 10px;
+}
+
+button {
+    background: #fbbf24;
+    border: none;
+    padding: 12px 20px;
+    margin-top: 15px;
+    cursor: pointer;
+    border-radius: 5px;
+    font-weight: bold;
+}
+
+button:hover {
+    background: #f59e0b;
+}
+
+.hidden {
+    display: none;
+}
+
+footer {
+    text-align: center;
+    padding: 30px;
+    background: #111827;
+    color: #6b7280;
+    margin-top: 40px;
+}
+
+@media (max-width: 768px) {
+    header h1 {
+        font-size: 2rem;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+    <h1>Forjados na Espera</h1>
+    <p>Ansiedade, desejo, masculinidade e propósito. Uma jornada profunda para homens que querem maturidade real, não fuga emocional.</p>
+</header>
+
+<section>
+    <h2 class="section-title">1. Se está garantido, por que ainda há ansiedade?</h2>
+    <div class="card">
+        A ansiedade não nasce apenas da dúvida sobre o futuro.
+        Ela nasce do desejo de controle.
+        <div class="quote">
+            "Entrega o teu caminho ao Senhor; confia nele, e o mais Ele fará."
+        </div>
+        <p>
+            Mesmo com promessa, o homem luta contra o tempo.
+            O espírito confia. A mente calcula. O corpo deseja agora.
+        </p>
+    </div>
+</section>
+
+<section>
+    <h2 class="section-title">2. O Conflito Interno</h2>
+    <div class="card">
+        <strong>Espírito:</strong> Confia.<br>
+        <strong>Mente:</strong> Questiona.<br>
+        <strong>Corpo:</strong> Deseja.
+        <p>
+            A maturidade não é eliminar o desejo.
+            É sustentar o desejo sem ser governado por ele.
+        </p>
+    </div>
+</section>
+
+<section>
+    <h2 class="section-title">3. O Que Realmente Vale Preocupar</h2>
+    <div class="card">
+        Perguntas que moldam um homem:
+        <ul>
+            <li>Estou me tornando capaz de sustentar o que peço?</li>
+            <li>Meu caráter aguenta responsabilidade?</li>
+            <li>Estou pronto para liderar uma família?</li>
+        </ul>
+        <p>
+            A promessa não dispensa preparo.
+        </p>
+    </div>
+</section>
+
+<section>
+    <h2 class="section-title">4. Desejo Físico e Emocional</h2>
+    <div class="card">
+        <strong>Desejo físico:</strong> energia que precisa de direção.<br><br>
+        Canalize para:
+        <ul>
+            <li>Treino intenso</li>
+            <li>Trabalho focado</li>
+            <li>Disciplina</li>
+        </ul>
+    </div>
+
+    <div class="card">
+        <strong>Desejo emocional:</strong> necessidade de conexão.
+        <ul>
+            <li>Amizades fortes</li>
+            <li>Mentoria</li>
+            <li>Comunidade</li>
+            <li>Serviço</li>
+        </ul>
+    </div>
+</section>
+
+<section>
+    <h2 class="section-title">5. A Verdade Mais Profunda</h2>
+    <div class="card">
+        Às vezes a ansiedade não é sobre a mulher.
+        É sobre sentir que você está parado.
+        <br><br>
+        Progresso reduz ansiedade.
+        Estagnação aumenta ruído mental.
+    </div>
+</section>
+
+<section>
+    <h2 class="section-title">6. Teste de Maturidade</h2>
+    <div class="card">
+        <p>Se Deus dissesse que você só casará daqui a 10 anos...</p>
+        <button onclick="mostrarResposta()">Clique para refletir</button>
+        <p id="resposta" class="hidden">
+            Você viveria esses anos como preparação poderosa
+            ou como contagem regressiva frustrada?
+        </p>
+    </div>
+</section>
+
+<section>
+    <h2 class="section-title">7. Princípios Finais</h2>
+    <div class="card">
+        <ul>
+            <li>Não idolatre o casamento.</li>
+            <li>Não reprima o desejo.</li>
+            <li>Não alimente fantasia constante.</li>
+            <li>Transforme desejo em combustível.</li>
+            <li>Construa enquanto espera.</li>
+        </ul>
+    </div>
+</section>
+
+<footer>
+    Forjados na Espera © 2026 | Masculinidade, Fé e Construção
+</footer>
+
+<script>
+function mostrarResposta() {
+    document.getElementById("resposta").classList.toggle("hidden");
+}
+</script>
+
+</body>
+</html>
