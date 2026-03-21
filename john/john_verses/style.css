@@ -1,0 +1,104 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+body {
+  background: #0f172a;
+  color: #e2e8f0;
+}
+
+/* HEADER */
+header {
+  text-align: center;
+  padding: 20px;
+  background: #1e293b;
+}
+
+header h1 {
+  font-size: 1.8rem;
+}
+
+/* NAV */
+nav {
+  display: flex;
+  overflow-x: auto;
+  padding: 10px;
+  background: #020617;
+}
+
+nav button {
+  background: #334155;
+  border: none;
+  color: white;
+  padding: 10px 14px;
+  margin-right: 10px;
+  border-radius: 20px;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: 0.3s;
+}
+
+nav button.active,
+nav button:hover {
+  background: #3b82f6;
+}
+
+/* MAIN */
+main {
+  padding: 20px;
+}
+
+/* CARD */
+.card {
+  background: #1e293b;
+  padding: 16px;
+  border-radius: 12px;
+  margin-bottom: 15px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.card:hover {
+  transform: scale(1.02);
+}
+
+/* VERSE */
+.verse {
+  font-style: italic;
+  color: #cbd5f5;
+  margin: 10px 0;
+}
+
+/* DETAILS */
+.details {
+  display: none;
+  margin-top: 10px;
+  color: #94a3b8;
+}
+
+.card.open .details {
+  display: block;
+}
+
+/* HIGHLIGHT */
+.highlight {
+  border: 2px solid #3b82f6;
+}
+
+/* FOOTER */
+footer {
+  text-align: center;
+  padding: 15px;
+  background: #020617;
+  font-size: 0.9rem;
+}
+
+/* MOBILE */
+@media (max-width: 600px) {
+  header h1 {
+    font-size: 1.5rem;
+  }
+}
