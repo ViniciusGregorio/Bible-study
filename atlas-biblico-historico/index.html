@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Atlas Bíblico-Histórico interativo: genealogias de Adão a Jesus, linhas de Mateus, Lucas e Crônicas, história de Israel, Igreja antiga, Reforma, avivamentos e tradições cristãs." />
+  <title>Atlas Bíblico-Histórico — v0.5</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="topbar atlas-topbar">
+    <div>
+      <p class="eyebrow">Atlas Bíblico-Histórico • v0.5</p>
+      <h1>Da árvore de Adão à história do Cristianismo</h1>
+      <p class="subtitle">Genealogia bíblica, Jesus em foco, reinados, dispersões, Igreja Primitiva, concílios, Reforma, avivamentos e tradições — com fontes e divergências explicitadas.</p>
+    </div>
+    <div class="header-actions">
+      <button class="button" data-go-tab="jesus">Jesus em foco</button>
+      <button class="button secondary" data-go-tab="history">Linha histórica</button>
+    </div>
+  </header>
+
+  <nav class="atlas-tabs" aria-label="Áreas do atlas">
+    <button class="atlas-tab active" data-tab="jesus">Jesus em foco</button>
+    <button class="atlas-tab" data-tab="genealogy">Genealogia completa</button>
+    <button class="atlas-tab" data-tab="canon">Bíblia inteira</button>
+    <button class="atlas-tab" data-tab="history">História</button>
+    <button class="atlas-tab" data-tab="traditions">Tradições</button>
+    <button class="atlas-tab" data-tab="study">Estudo</button>
+  </nav>
+
+  <section class="stats atlas-stats" aria-label="Resumo da base">
+    <div><strong id="peopleCount">0</strong><span>entidades genealógicas</span></div>
+    <div><strong id="relationCount">0</strong><span>relações registradas</span></div>
+    <div><strong id="historyCount">0</strong><span>marcos históricos</span></div>
+    <div><strong id="traditionCount">0</strong><span>tradições/movimentos</span></div>
+    <div><strong id="canonicalCount">0</strong><span>pessoas no catálogo bíblico</span></div>
+  </section>
+
+  <!-- JESUS EM FOCO -->
+  <section class="atlas-page active" data-page="jesus">
+    <div class="page-intro">
+      <div>
+        <p class="eyebrow">Visualização principal</p>
+        <h2>Adão → Jesus, sem a poluição da árvore inteira</h2>
+        <p>O tronco comum aparece em blocos. Depois de Davi, as linhas de Mateus e Lucas podem ser abertas lado a lado. A linha real de 1 Crônicas funciona como controle paralelo.</p>
+      </div>
+      <div class="compact-controls">
+        <label class="toggle-row"><input type="checkbox" id="focusMatthew" checked><span>Mateus</span></label>
+        <label class="toggle-row"><input type="checkbox" id="focusLuke" checked><span>Lucas</span></label>
+        <label class="toggle-row"><input type="checkbox" id="focusChronicles"><span>1 Crônicas</span></label>
+        <button id="toggleFocusDensity" class="button secondary small">Expandir gerações</button>
+      </div>
+    </div>
+
+    <div class="focus-shell">
+      <section class="focus-panel">
+        <div id="jesusFocus" class="jesus-focus"></div>
+      </section>
+      <aside class="focus-notes">
+        <p class="eyebrow">Como ler</p>
+        <h3>Texto primeiro, hipótese depois</h3>
+        <div id="jesusNotes"></div>
+      </aside>
+    </div>
+
+    <section class="source-callout">
+      <strong>Regra do atlas:</strong>
+      <span>José aparece nas duas genealogias, mas o mapa não o representa como pai biológico de Jesus. Mateus explicita José como marido de Maria, “da qual nasceu Jesus”.</span>
+    </section>
+  </section>
+
+  <!-- GENEALOGIA COMPLETA -->
+  <section class="atlas-page" data-page="genealogy">
+    <section class="controls" aria-label="Controles do mapa">
+      <label class="search-wrap">
+        <span>Buscar nome</span>
+        <input id="searchInput" type="search" placeholder="Ex.: Davi, Zorobabel, Natã, José..." autocomplete="off" />
+      </label>
+      <label>
+        <span>Visualização</span>
+        <select id="viewMode">
+          <option value="mainline">Linha principal: Adão → Israel</option>
+          <option value="davidic" selected>Judá → Davi → linha real</option>
+          <option value="jesusMatthew">Mateus 1</option>
+          <option value="jesusLuke">Lucas 3</option>
+          <option value="all">Tudo na base genealógica</option>
+          <option value="cain">Ramo de Caim</option>
+          <option value="nations">Tabela das Nações</option>
+          <option value="terah">Família de Terá</option>
+          <option value="abraham">Família de Abraão</option>
+          <option value="ishmael">Ramo de Ismael</option>
+          <option value="esau">Esaú / Edom</option>
+          <option value="israel">Jacó / Israel e os doze filhos</option>
+          <option value="egypt">Família que entra no Egito</option>
+          <option value="chronicles4">1 Crônicas 4 — Judá/Simeão</option>
+          <option value="chronicles5">1 Crônicas 5 — Rúben/Gade/Manassés</option>
+          <option value="levites">1 Crônicas 6 — Levi/sacerdócio</option>
+          <option value="chronicles7">1 Crônicas 7 — tribos</option>
+          <option value="benjaminSaul">1 Crônicas 8–9 — Benjamim/Saul</option>
+          <option value="postexilic">Pós-exílio — Esdras/Neemias</option>
+        </select>
+      </label>
+      <label>
+        <span>Filtrar fonte</span>
+        <select id="sourceFilter">
+          <option value="all">Todas as fontes</option>
+          <option value="genesis">Gênesis</option>
+          <option value="ruth">Rute</option>
+          <option value="samuel">Samuel</option>
+          <option value="chronicles">1 Crônicas</option>
+          <option value="matthew">Mateus</option>
+          <option value="luke">Lucas</option>
+          <option value="septuagint">Septuaginta / variante</option>
+          <option value="numbers">Números</option>
+          <option value="ezra">Esdras</option>
+          <option value="nehemiah">Neemias</option>
+        </select>
+      </label>
+      <label class="toggle-row"><input type="checkbox" id="showVariants" checked /><span>Variantes</span></label>
+      <label class="toggle-row"><input type="checkbox" id="showPeopleGroups" checked /><span>Povos/clãs</span></label>
+      <button id="resetView" class="button secondary">Centralizar</button>
+      <button id="focusMainline" class="button">Adão → Israel</button>
+    </section>
+
+    <main class="layout">
+      <section class="map-panel">
+        <div class="legend">
+          <span><i class="line-sample direct"></i> pai/origem</span>
+          <span><i class="line-sample mother-line"></i> mãe</span>
+          <span><i class="line-sample spouse-line"></i> casamento/contexto</span>
+          <span><i class="line-sample variant"></i> variante textual</span>
+          <span><i class="line-sample genealogy-line"></i> genealogia condensada</span>
+          <span><i class="dot normal"></i> pessoa</span>
+          <span><i class="dot people"></i> povo/clã</span>
+          <span><i class="dot noted"></i> possui observação</span>
+        </div>
+        <div id="viewport" class="viewport">
+          <div id="world" class="world">
+            <svg id="connections" class="connections" aria-hidden="true"></svg>
+            <div id="nodes" class="nodes"></div>
+          </div>
+        </div>
+        <div class="zoom-help">Arraste para mover • roda para zoom • clique em um nome para referências e linhagem até Adão.</div>
+      </section>
+
+      <aside class="details-panel" id="detailsPanel">
+        <div class="empty-state">
+          <div class="seal">✦</div>
+          <h2>Explore a genealogia</h2>
+          <p>Selecione uma pessoa, povo ou clã para ver referências, parentesco, variações de nome e notas.</p>
+        </div>
+      </aside>
+    </main>
+
+    <section class="timeline-section compact-subsection">
+      <div class="section-heading">
+        <div><p class="eyebrow">Narrativa bíblica</p><h2>Eventos ligados à árvore</h2></div>
+        <p class="timeline-note">Esta faixa continua sendo a cronologia narrativa da base de Gênesis; a linha histórica ampliada está na aba História.</p>
+      </div>
+      <div id="timeline" class="timeline"></div>
+    </section>
+
+    <section class="chronology-section compact-subsection">
+      <div class="section-heading">
+        <div><p class="eyebrow">Cronologia textual</p><h2>Idades registradas</h2></div>
+        <p class="timeline-note">Idades bíblicas são mantidas como dados do texto, sem converter automaticamente em uma única cronologia absoluta.</p>
+      </div>
+      <div id="ageTable" class="age-grid"></div>
+    </section>
+  </section>
+
+
+  <!-- BÍBLIA INTEIRA / COBERTURA -->
+  <section class="atlas-page" data-page="canon">
+    <div class="page-intro">
+      <div>
+        <p class="eyebrow">Cobertura verificável do cânon</p>
+        <h2>Da genealogia ao catálogo de pessoas nomeadas</h2>
+        <p>Nem toda pessoa da Bíblia pertence a uma genealogia. Esta área mostra o que já está indexado por livro e separa <strong>relações familiares</strong> de <strong>pessoas apenas narrativamente mencionadas</strong>.</p>
+      </div>
+      <div class="compact-controls">
+        <input id="canonSearch" class="history-search" type="search" placeholder="Buscar Pedro, Esdras, Antipas..." />
+        <select id="canonSectionFilter">
+          <option value="all">Todas as seções</option>
+          <option value="Evangelhos">Evangelhos</option>
+          <option value="Atos">Atos</option>
+          <option value="Epístolas/Apocalipse">Epístolas / Apocalipse</option>
+        </select>
+      </div>
+    </div>
+
+    <section class="canon-summary">
+      <article><strong id="canonGenealogyCount">0</strong><span>entidades na base genealógica</span></article>
+      <article><strong id="canonRelationshipCount">0</strong><span>relações genealógicas</span></article>
+      <article><strong id="canonFigureCount">0</strong><span>pessoas narrativas catalogadas</span></article>
+      <article><strong id="canonCoverageCount">0</strong><span>blocos de cobertura auditados</span></article>
+    </section>
+
+    <section class="coverage-section">
+      <div class="section-heading">
+        <div><p class="eyebrow">Progresso</p><h2>Cobertura por livro / bloco</h2></div>
+        <p class="timeline-note">“Completo” significa completo para o recorte indicado, não que todo personagem daquele livro já esteja cadastrado.</p>
+      </div>
+      <div id="bibleCoverage" class="coverage-grid"></div>
+    </section>
+
+    <section class="canon-figures-section">
+      <div class="section-heading">
+        <div><p class="eyebrow">Novo Testamento</p><h2>Pessoas nomeadas fora das genealogias</h2></div>
+        <p class="timeline-note">Essas pessoas não são desenhadas como “descendentes de Jesus”. Elas formam um catálogo histórico-narrativo separado.</p>
+      </div>
+      <div id="canonFigures" class="canon-figures-grid"></div>
+    </section>
+
+    <section class="source-callout canon-endpoint-note">
+      <strong>Sobre o “último homem da Bíblia”:</strong>
+      <span>não existe uma cadeia genealógica contínua até o fim do Novo Testamento. Nos últimos livros do cânon aparecem pessoas como Gaio, Diótrefes e Demétrio em 3 João e João/Antipas em Apocalipse. O atlas os registra como pessoas do texto, não como continuação genealógica de Adão → Jesus.</span>
+    </section>
+  </section>
+
+  <!-- HISTÓRIA -->
+  <section class="atlas-page" data-page="history">
+    <div class="page-intro">
+      <div>
+        <p class="eyebrow">Da história de Israel aos dias atuais</p>
+        <h2>Linha histórica em camadas</h2>
+        <p>Marcos bíblicos, dispersões judaicas, Império Romano, perseguições, concílios, cismas, Reforma, missões, avivamentos e movimentos modernos.</p>
+      </div>
+      <div class="compact-controls">
+        <label>
+          <span>Filtrar período</span>
+          <select id="historyEraFilter">
+            <option value="all">Todos</option>
+            <option value="Israel">Israel / Segundo Templo</option>
+            <option value="Igreja">Igreja antiga</option>
+            <option value="Medieval">Medieval</option>
+            <option value="Reforma">Reforma</option>
+            <option value="Avivamentos">Avivamentos</option>
+            <option value="Pentecostal">Pentecostal / atual</option>
+          </select>
+        </label>
+        <input id="historySearch" class="history-search" type="search" placeholder="Nero, Constantino, Reforma..." />
+      </div>
+    </div>
+
+    <section class="apostolic-section">
+      <div class="section-heading">
+        <div><p class="eyebrow">Após Atos 2</p><h2>Pessoas da era apostólica registradas no Novo Testamento</h2></div>
+        <p class="timeline-note">Aqui distinguimos o que o próprio Novo Testamento registra do que tradições posteriores dizem sobre viagens ou mortes dos apóstolos.</p>
+      </div>
+      <div id="apostolicFigures" class="apostolic-grid"></div>
+    </section>
+
+    <div id="historyTimeline" class="history-timeline"></div>
+
+    <section class="rulers-section">
+      <div class="section-heading">
+        <div><p class="eyebrow">Linha de reinados</p><h2>Governantes que ajudam a localizar a história</h2></div>
+        <p class="timeline-note">Para a Antiguidade, datas podem variar alguns anos conforme a cronologia adotada. O objetivo aqui é orientação, não falsa precisão.</p>
+      </div>
+      <div id="rulerTracks" class="ruler-tracks"></div>
+    </section>
+  </section>
+
+  <!-- TRADIÇÕES -->
+  <section class="atlas-page" data-page="traditions">
+    <div class="page-intro">
+      <div>
+        <p class="eyebrow">História das tradições cristãs</p>
+        <h2>Não é uma “árvore de quem está certo”</h2>
+        <p>As linhas abaixo significam continuidade, reforma, separação, influência ou sobreposição. Elas não declaram legitimidade teológica nem apostolicidade de um ramo.</p>
+      </div>
+      <div class="tradition-legend">
+        <span><i class="edge-pill continuidade"></i> continuidade</span>
+        <span><i class="edge-pill reforma"></i> reforma</span>
+        <span><i class="edge-pill separacao"></i> separação</span>
+        <span><i class="edge-pill influencia"></i> influência</span>
+      </div>
+    </div>
+
+    <div class="tradition-layout">
+      <section>
+        <div id="traditionMap" class="tradition-map"></div>
+      </section>
+      <aside id="traditionDetails" class="tradition-details">
+        <p class="eyebrow">Selecione um ramo</p>
+        <h3>Mapa histórico-teológico</h3>
+        <p>Clique em uma tradição para ver período, descrição, relações e alguns nomes importantes.</p>
+      </aside>
+    </div>
+
+    <section class="brazil-section">
+      <div class="section-heading">
+        <div><p class="eyebrow">Recorte brasileiro</p><h2>Pentecostalismo: movimentos e nomes</h2></div>
+        <p class="timeline-note">“Pentecostal”, “segunda onda”, “neopentecostal” e categorias semelhantes são ferramentas historiográficas; fronteiras variam entre pesquisadores e igrejas.</p>
+      </div>
+      <div id="brazilPentecostal" class="brazil-grid"></div>
+    </section>
+  </section>
+
+  <!-- ESTUDO -->
+  <section class="atlas-page" data-page="study">
+    <section class="study-section standalone-study">
+      <div class="section-heading">
+        <div><p class="eyebrow">Memorização ativa</p><h2>Modo estudo</h2></div>
+        <p class="timeline-note">As perguntas genealógicas são geradas diretamente da base de relações.</p>
+      </div>
+      <div class="quiz-shell">
+        <div class="quiz-main">
+          <div class="quiz-meta"><span>Desafio genealógico</span><strong id="quizScore">0/0</strong></div>
+          <h3 id="quizQuestion">Carregando pergunta…</h3>
+          <div id="quizAnswers" class="quiz-answers"></div>
+          <div id="quizFeedback" class="quiz-feedback"></div>
+        </div>
+        <aside class="study-tip">
+          <strong>Estratégia de memorização</strong>
+          <p>Domine primeiro Adão → Noé → Abraão → Davi → Jesus. Depois abra Mateus e Lucas separadamente; só então estude os ramos laterais e a história pós-apostólica.</p>
+          <button id="newQuiz" class="button secondary small">Nova pergunta</button>
+        </aside>
+      </div>
+    </section>
+
+    <section class="sources-section">
+      <div class="section-heading">
+        <div><p class="eyebrow">Metodologia</p><h2>Quatro tipos de afirmação</h2></div>
+      </div>
+      <div class="source-grid">
+        <article><strong>Texto bíblico</strong><p>Nome, relação ou evento explicitamente registrado em uma passagem.</p></article>
+        <article><strong>Variante textual</strong><p>Diferenças entre manuscritos/tradições são preservadas e marcadas.</p></article>
+        <article><strong>Reconstrução histórica</strong><p>Datas, impérios e acontecimentos recebem linguagem aproximativa quando necessário.</p></article>
+        <article><strong>Interpretação teológica</strong><p>Explicações de divergências e classificações denominacionais são identificadas como interpretações.</p></article>
+      </div>
+    </section>
+  </section>
+
+  <footer>
+    Atlas educacional em expansão. A Bíblia não apresenta uma genealogia humana contínua depois de Jesus; por isso o projeto muda conscientemente de “genealogia” para “história, pessoas, instituições e linhas de influência”.
+  </footer>
+
+  <script src="data.js"></script>
+  <script src="expansion.js"></script>
+  <script src="data/canon-v05.js"></script>
+  <script src="app.js"></script>
+  <script src="hub.js"></script>
+  <script src="canon-ui.js"></script>
+</body>
+</html>
